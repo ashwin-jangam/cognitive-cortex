@@ -706,6 +706,411 @@ mark.ev{background:var(--tint);border-bottom:2px solid var(--green);padding:0 2p
   </div>
 </section>
 
+<!-- ======================= SAMPLE 02 : GRADING ASSISTANT ======================= -->
+<section id="grading-assistant" class="view" aria-labelledby="t-ga">
+  <div class="page">
+    <div class="topbar rv" style="--d:0">
+      <a class="back" href="#samples"><svg><use href="#i-arrow-left"/></svg>Samples</a>
+      <nav class="subnav" aria-label="Sections"><a href="#capabilities">OUR CAPABILITIES</a><a href="#about">ABOUT US</a><a href="#why">WHY US</a><a class="cur" href="#samples">OUR SAMPLES</a></nav>
+      <div class="mini-brand"><img src="assets/logo.svg" alt=""><span>Cognitive <b class="g">Cortex</b></span></div>
+    </div>
+    <h2 class="page-title rv" style="--d:1" id="t-ga">GRADING ASSISTANT</h2>
+
+    <div class="vision rv" style="--d:2">
+      <img src="assets/logo.svg" alt="">
+      <span class="vision-label">SAMPLE 02</span>
+      <p>Rubric-based marks <span class="g">backed by evidence from every answer</span>, with feedback students can act on and a class view of misconceptions, all approved by the teacher.</p>
+      <span class="shine" aria-hidden="true"></span>
+    </div>
+
+    <!-- 01 PURPOSE -->
+    <div class="sec">
+      <div class="sec-head rv" style="--d:3"><span class="cap-num">01</span><h3>PURPOSE</h3></div>
+      <div class="purpose-grid">
+        <div class="panel challenge rv rv-l" style="--d:4">
+          <span class="topline"></span>
+          <div class="panel-head"><h3>THE CHALLENGE</h3></div>
+          <ul>
+            <li><svg><use href="#i-x"/></svg><span>Marking written answers is slow and repetitive, and it eats into evenings and weekends.</span></li>
+            <li><svg><use href="#i-x"/></svg><span>Feedback gets shorter as the pile gets taller, so students receive a mark instead of a next step.</span></li>
+            <li><svg><use href="#i-x"/></svg><span>Class-wide misconceptions stay hidden inside individual scripts, so reteaching is guesswork.</span></li>
+          </ul>
+        </div>
+        <div class="panel goal rv rv-r" style="--d:5">
+          <span class="topline"></span>
+          <div class="panel-head"><h3>OUR PURPOSE</h3></div>
+          <ul>
+            <li><svg><use href="#i-check-plain"/></svg><span><b>Evidence or zero:</b> marks are awarded only when the student's own words can be quoted to earn them.</span></li>
+            <li><svg><use href="#i-check-plain"/></svg><span><b>Consistent and fair:</b> the same rubric decision rules for every student, with uncertain cases flagged for the teacher.</span></li>
+            <li><svg><use href="#i-check-plain"/></svg><span><b>Teacher in control:</b> every mark is a suggestion until the teacher approves it.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 WHAT IT DOES -->
+    <div class="sec">
+      <div class="sec-head rv" style="--d:6"><span class="cap-num">02</span><h3>WHAT IT DOES</h3></div>
+      <div class="qtype-grid">
+        <article class="qtype rv" style="--d:7">
+          <div class="qtype-head"><svg><use href="#i-quote"/></svg><h4>Evidence-Backed Marks</h4></div>
+          <p class="cap-lead">Criterion-by-criterion marking against your rubric.</p>
+          <ul>
+            <li>Verbatim quote supporting every mark awarded</li>
+            <li>MCQs auto-marked against the answer key</li>
+            <li>Totals double-checked, never estimated</li>
+          </ul>
+        </article>
+        <article class="qtype rv" style="--d:8">
+          <div class="qtype-head"><svg><use href="#i-pen"/></svg><h4>Actionable Feedback</h4></div>
+          <p class="cap-lead">One strength and one next step for every answer.</p>
+          <ul>
+            <li>Targets the lowest-scoring criterion</li>
+            <li>Grade-appropriate and encouraging, with no peer comparison</li>
+            <li>Ready to share with students when you approve it</li>
+          </ul>
+        </article>
+        <article class="qtype rv" style="--d:9">
+          <div class="qtype-head"><svg><use href="#i-chart"/></svg><h4>Class Insights</h4></div>
+          <p class="cap-lead">See what the whole class understood and what it missed.</p>
+          <ul>
+            <li>Misconceptions ranked, with the students affected</li>
+            <li>Lowest-scoring criteria and a reteach focus</li>
+            <li>Marks export ready for your LMS</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="flow">
+        <div class="step rv" style="--d:10"><b>Rubric &amp; answers</b><span>Works directly with Assessment Copilot rubrics</span></div>
+        <div class="step rv" style="--d:11"><b>Input check</b><span>Marks add up, IDs anonymised</span></div>
+        <div class="step rv" style="--d:12"><b>Mark criteria</b><span>One question at a time, across all students</span></div>
+        <div class="step rv" style="--d:13"><b>Verify &amp; tally</b><span>Quotes checked, totals double-added</span></div>
+        <div class="step teacher rv" style="--d:14"><b>Teacher approves</b><span>Override, re-mark, export</span></div>
+      </div>
+
+      <div class="sample-q rv" style="--d:15">
+        <div class="sample-q-head"><span>Sample output · Marked answer</span><span class="chips"><span class="chip">Student S04</span><span class="chip">Q7 · Heat</span><span class="chip">3 / 4 marks</span></span></div>
+        <div class="sample-q-body">
+          <p><mark class="ev">The steel spoon handle will be hotter</mark> because <mark class="ev">metal is a good conductor so heat travels up it</mark>. Wood is heavier so it stays cool. A pan handle should be <mark class="ev">plastic because it is an insulator</mark>.</p>
+          <table class="crit-table">
+            <thead><tr><th>Criterion</th><th>Mark</th><th>Evidence</th></tr></thead>
+            <tbody>
+              <tr><td>C1 Identifies steel handle as hotter</td><td class="n"><span class="lv full">full</span> 1/1</td><td>"The steel spoon handle will be hotter"</td></tr>
+              <tr><td>C2 Rejects the weight-based reason</td><td class="n"><span class="lv none">none</span> 0/1</td><td>Not evident; uses weight to explain why the wood stays cool</td></tr>
+              <tr><td>C3 Explains conduction correctly</td><td class="n"><span class="lv full">full</span> 1/1</td><td>"metal is a good conductor so heat travels up it"</td></tr>
+              <tr><td>C4 Names an insulator with a reason</td><td class="n"><span class="lv full">full</span> 1/1</td><td>"plastic because it is an insulator"</td></tr>
+            </tbody>
+          </table>
+          <div class="fb">
+            <p><b>✔ Strength:</b> You clearly explained that metal conducts heat up the handle.</p>
+            <p><b>➜ Next step:</b> Think about whether weight changes how heat moves. What property of wood really keeps it cool?</p>
+          </div>
+        </div>
+        <details>
+          <summary><svg><use href="#i-arrow-right"/></svg>Show class summary</summary>
+          <div class="key">
+            <p><b>Class average:</b> 68% · <b>Flagged for teacher review:</b> 2 answers (rubric wording ambiguous)</p>
+            <p><b>Top misconception:</b> weight-determines-conduction, 9 of 30 students (S04, S07, S11, …)</p>
+            <p><b>Lowest-scoring criterion:</b> Q7/C2 at 41%. Reteach focus: conduction depends on the material, not on weight.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <!-- 03 PRODUCTIVITY -->
+    <div class="sec">
+      <div class="sec-head rv" style="--d:16"><span class="cap-num">03</span><h3>PRODUCTIVITY</h3></div>
+      <div class="prod-grid">
+        <div class="compare rv rv-l" style="--d:17">
+          <h4>Time to mark and give feedback on 30 written answers</h4>
+          <p class="note">Illustrative estimate: one 4-mark reasoning question, with written feedback for every student.</p>
+          <div class="bar-row"><span class="lbl">Manual</span><div class="bar manual"><i style="--w:100%">~150 min</i></div></div>
+          <div class="bar-row"><span class="lbl">With Assistant</span><div class="bar copilot"><i style="--w:max(30%,84px)">~45 min</i></div></div>
+          <div class="saved"><strong>~105 min</strong><span>saved per question set, with the teacher still reviewing every suggested mark</span></div>
+        </div>
+        <div class="benefits">
+          <div class="benefit rv" style="--d:18"><svg><use href="#i-clock"/></svg><b>Evenings back</b><span>Marking becomes review and approval, not writing from scratch.</span></div>
+          <div class="benefit rv" style="--d:19"><svg><use href="#i-pen"/></svg><b>Better feedback</b><span>Every student gets a specific next step, even the 30th script.</span></div>
+          <div class="benefit rv" style="--d:20"><svg><use href="#i-chart"/></svg><b>Targeted reteaching</b><span>Misconception data shows exactly what to revisit and with whom.</span></div>
+          <div class="benefit rv" style="--d:21"><svg><use href="#i-shield"/></svg><b>Fair and transparent</b><span>Evidence for every mark makes moderation and parent queries simple.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bridge rv" style="--d:22">
+      <span class="ico-c"><svg style="width:28px;height:28px;color:var(--white)"><use href="#i-spark"/></svg></span>
+      <span>The assistant suggests, the teacher decides: no mark is final without approval.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= SAMPLE 03 : SELF-STUDY TUTOR ======================= -->
+<section id="self-study-tutor" class="view" aria-labelledby="t-st">
+  <div class="page">
+    <div class="topbar rv" style="--d:0">
+      <a class="back" href="#samples"><svg><use href="#i-arrow-left"/></svg>Samples</a>
+      <nav class="subnav" aria-label="Sections"><a href="#capabilities">OUR CAPABILITIES</a><a href="#about">ABOUT US</a><a href="#why">WHY US</a><a class="cur" href="#samples">OUR SAMPLES</a></nav>
+      <div class="mini-brand"><img src="assets/logo.svg" alt=""><span>Cognitive <b class="g">Cortex</b></span></div>
+    </div>
+    <h2 class="page-title rv" style="--d:1" id="t-st">SELF-STUDY TUTOR</h2>
+
+    <div class="vision rv" style="--d:2">
+      <img src="assets/logo.svg" alt="">
+      <span class="vision-label">SAMPLE 03</span>
+      <p>A Socratic tutor that <span class="g">helps students think, not copy</span>: patient, step-by-step guidance grounded in their curriculum, whenever they study.</p>
+      <span class="shine" aria-hidden="true"></span>
+    </div>
+
+    <!-- 01 PURPOSE -->
+    <div class="sec">
+      <div class="sec-head rv" style="--d:3"><span class="cap-num">01</span><h3>PURPOSE</h3></div>
+      <div class="purpose-grid">
+        <div class="panel challenge rv rv-l" style="--d:4">
+          <span class="topline"></span>
+          <div class="panel-head"><h3>THE CHALLENGE</h3></div>
+          <ul>
+            <li><svg><use href="#i-x"/></svg><span>Students get stuck on homework at home, with no one to ask until the next lesson.</span></li>
+            <li><svg><use href="#i-x"/></svg><span>General AI chatbots hand over full answers, so students finish the work without learning anything.</span></li>
+            <li><svg><use href="#i-x"/></svg><span>Teachers can't see where each student struggled, so class time goes on re-explaining.</span></li>
+          </ul>
+        </div>
+        <div class="panel goal rv rv-r" style="--d:5">
+          <span class="topline"></span>
+          <div class="panel-head"><h3>OUR PURPOSE</h3></div>
+          <ul>
+            <li><svg><use href="#i-check-plain"/></svg><span><b>The student does the thinking:</b> guiding questions and escalating hints, never a shortcut to the answer.</span></li>
+            <li><svg><use href="#i-check-plain"/></svg><span><b>Grounded and verified:</b> explanations come from the class curriculum, and every step is checked before it's confirmed.</span></li>
+            <li><svg><use href="#i-check-plain"/></svg><span><b>Visible to teachers:</b> a short session summary shows where each student struggled.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 WHAT IT DOES -->
+    <div class="sec">
+      <div class="sec-head rv" style="--d:6"><span class="cap-num">02</span><h3>WHAT IT DOES</h3></div>
+      <div class="qtype-grid">
+        <article class="qtype rv" style="--d:7">
+          <div class="qtype-head"><svg><use href="#i-chat"/></svg><h4>Socratic Coaching</h4></div>
+          <p class="cap-lead">One question at a time, matched to where the student is stuck.</p>
+          <ul>
+            <li>Five-level hint ladder, raised only when needed</li>
+            <li>Worked examples use a parallel problem, not the student's own</li>
+            <li>Ends each problem by asking the student to explain why the method works</li>
+          </ul>
+        </article>
+        <article class="qtype rv" style="--d:8">
+          <div class="qtype-head"><svg><use href="#i-shield"/></svg><h4>Safe &amp; Honest</h4></div>
+          <p class="cap-lead">Built for students, with guardrails schools can trust.</p>
+          <ul>
+            <li>Graded work: guidance only, never solutions</li>
+            <li>Checks every answer before calling it right</li>
+            <li>Safeguarding concerns are escalated to a trusted adult</li>
+          </ul>
+        </article>
+        <article class="qtype rv" style="--d:9">
+          <div class="qtype-head"><svg><use href="#i-chart"/></svg><h4>Teacher Session Summary</h4></div>
+          <p class="cap-lead">What happened in each session, at a glance.</p>
+          <ul>
+            <li>Problems attempted and how much help each needed</li>
+            <li>Misconceptions, quoted in the student's own words</li>
+            <li>Mastery signal and the recommended next practice</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="flow">
+        <div class="step rv" style="--d:10"><b>L0 Diagnose</b><span>What have you tried so far?</span></div>
+        <div class="step rv" style="--d:11"><b>L1 Nudge</b><span>A focusing question</span></div>
+        <div class="step rv" style="--d:12"><b>L2 Concept</b><span>Names the rule, doesn't apply it</span></div>
+        <div class="step rv" style="--d:13"><b>L3 First step</b><span>Only the first move</span></div>
+        <div class="step teacher rv" style="--d:14"><b>L4 Parallel example</b><span>Same method, different numbers</span></div>
+      </div>
+
+      <div class="sample-q rv" style="--d:15">
+        <div class="sample-q-head"><span>Sample session · Homework help</span><span class="chips"><span class="chip">Grade 7</span><span class="chip">Maths · Linear equations</span><span class="chip">Solved at L1</span></span></div>
+        <div class="sample-q-body">
+          <div class="chat">
+            <div class="msg s"><small>STUDENT</small>what's x in 3x + 5 = 20</div>
+            <div class="msg t"><small>TUTOR · L0</small>Let's work it out together. What is the equation asking you to find?</div>
+            <div class="msg s"><small>STUDENT</small>x i guess. idk how</div>
+            <div class="msg t"><small>TUTOR · L1</small>Good, we're finding x. Right now x has some numbers "stuck" to it. Which number could you remove from the left side first?</div>
+            <div class="msg s"><small>STUDENT</small>take away 5? so 3x = 25</div>
+            <div class="msg t"><small>TUTOR · L1</small>Taking away 5 is exactly right! Check that subtraction again: what is 20 − 5?</div>
+            <div class="msg s"><small>STUDENT</small>oh 15. so 3x = 15, x = 5</div>
+            <div class="msg t"><small>TUTOR · VERIFIED</small>Yes, x = 5, and you caught your own mistake. In one sentence, why did we subtract 5 before dividing by 3?</div>
+          </div>
+        </div>
+        <details>
+          <summary><svg><use href="#i-arrow-right"/></svg>Show teacher session summary</summary>
+          <div class="key">
+            <p><b>Outcome:</b> solved independently (highest hint level: L1) · <b>Mastery signal:</b> secure</p>
+            <p><b>Misconception:</b> subtraction slip when isolating x, in the student's words: "so 3x = 25"</p>
+            <p><b>Recommended next practice:</b> two-step equations with negative constants. <b>Answer requests:</b> 0 · <b>Safeguarding alert:</b> none</p>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <!-- 03 PRODUCTIVITY -->
+    <div class="sec">
+      <div class="sec-head rv" style="--d:16"><span class="cap-num">03</span><h3>PRODUCTIVITY</h3></div>
+      <div class="prod-grid">
+        <div class="compare rv rv-l" style="--d:17">
+          <h4>Class time spent re-explaining homework, per week</h4>
+          <p class="note">Illustrative estimate for one class: stuck points are worked through at home, and teachers start the lesson knowing who needs help.</p>
+          <div class="bar-row"><span class="lbl">Without</span><div class="bar manual"><i style="--w:100%">~60 min</i></div></div>
+          <div class="bar-row"><span class="lbl">With Tutor</span><div class="bar copilot"><i style="--w:max(33%,84px)">~20 min</i></div></div>
+          <div class="saved"><strong>~40 min</strong><span>of class time each week returned to new learning</span></div>
+        </div>
+        <div class="benefits">
+          <div class="benefit rv" style="--d:18"><svg><use href="#i-clock"/></svg><b>Help whenever students study</b><span>No waiting until the next lesson to get unstuck.</span></div>
+          <div class="benefit rv" style="--d:19"><svg><use href="#i-brain"/></svg><b>Real learning</b><span>Students reach the answer themselves, so the method sticks.</span></div>
+          <div class="benefit rv" style="--d:20"><svg><use href="#i-chart"/></svg><b>Struggles made visible</b><span>Session summaries show the teacher who needs help and why.</span></div>
+          <div class="benefit rv" style="--d:21"><svg><use href="#i-shield"/></svg><b>Integrity by design</b><span>Guidance only on graded work, and full solutions only after the student has tried.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bridge rv" style="--d:22">
+      <span class="ico-c"><svg style="width:28px;height:28px;color:var(--white)"><use href="#i-spark"/></svg></span>
+      <span>Guide, don't give: the student does the thinking, and the teacher sees the journey.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= SAMPLE 04 : ASSIGNMENT ADVISOR ======================= -->
+<section id="assignment-advisor" class="view" aria-labelledby="t-aa">
+  <div class="page">
+    <div class="topbar rv" style="--d:0">
+      <a class="back" href="#samples"><svg><use href="#i-arrow-left"/></svg>Samples</a>
+      <nav class="subnav" aria-label="Sections"><a href="#capabilities">OUR CAPABILITIES</a><a href="#about">ABOUT US</a><a href="#why">WHY US</a><a class="cur" href="#samples">OUR SAMPLES</a></nav>
+      <div class="mini-brand"><img src="assets/logo.svg" alt=""><span>Cognitive <b class="g">Cortex</b></span></div>
+    </div>
+    <h2 class="page-title rv" style="--d:1" id="t-aa">ASSIGNMENT ADVISOR</h2>
+
+    <div class="vision rv" style="--d:2">
+      <img src="assets/logo.svg" alt="">
+      <span class="vision-label">SAMPLE 04</span>
+      <p>A writing and project mentor that coaches students <span class="g">from first idea to final check</span>, against their teacher's rubric and in their own voice.</p>
+      <span class="shine" aria-hidden="true"></span>
+    </div>
+
+    <!-- 01 PURPOSE -->
+    <div class="sec">
+      <div class="sec-head rv" style="--d:3"><span class="cap-num">01</span><h3>PURPOSE</h3></div>
+      <div class="purpose-grid">
+        <div class="panel challenge rv rv-l" style="--d:4">
+          <span class="topline"></span>
+          <div class="panel-head"><h3>THE CHALLENGE</h3></div>
+          <ul>
+            <li><svg><use href="#i-x"/></svg><span>Detailed draft feedback takes 10+ minutes per student, so most students get one round, at the very end.</span></li>
+            <li><svg><use href="#i-x"/></svg><span>AI writing tools will happily write the essay for them, which undermines learning and integrity.</span></li>
+            <li><svg><use href="#i-x"/></svg><span>Students leave long assignments to the last minute without a plan.</span></li>
+          </ul>
+        </div>
+        <div class="panel goal rv rv-r" style="--d:5">
+          <span class="topline"></span>
+          <div class="panel-head"><h3>OUR PURPOSE</h3></div>
+          <ul>
+            <li><svg><use href="#i-check-plain"/></svg><span><b>Coach, never ghostwrite:</b> questions, evidence and next steps, while the words stay the student's own.</span></li>
+            <li><svg><use href="#i-check-plain"/></svg><span><b>Rubric-anchored:</b> every comment quotes the draft and maps to the teacher's criteria.</span></li>
+            <li><svg><use href="#i-check-plain"/></svg><span><b>Feedback at every stage:</b> from brainstorm to final check, with a plan to hit the deadline.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 WHAT IT DOES -->
+    <div class="sec">
+      <div class="sec-head rv" style="--d:6"><span class="cap-num">02</span><h3>WHAT IT DOES</h3></div>
+      <div class="qtype-grid">
+        <article class="qtype rv" style="--d:7">
+          <div class="qtype-head"><svg><use href="#i-quote"/></svg><h4>Evidence-Backed Feedback</h4></div>
+          <p class="cap-lead">Specific, rubric-linked comments on the student's own work.</p>
+          <ul>
+            <li>Quotes the exact sentence each comment refers to</li>
+            <li>Top 3 priorities only, ranked by rubric weight</li>
+            <li>A guiding question for each priority</li>
+          </ul>
+        </article>
+        <article class="qtype rv" style="--d:8">
+          <div class="qtype-head"><svg><use href="#i-shield"/></svg><h4>Integrity Built In</h4></div>
+          <p class="cap-lead">Help that keeps the work authentically the student's.</p>
+          <ul>
+            <li>Never writes or rewrites the student's text</li>
+            <li>Never invents sources; suggests types of source to look for</li>
+            <li>Logs requests to write the work, for the teacher</li>
+          </ul>
+        </article>
+        <article class="qtype rv" style="--d:9">
+          <div class="qtype-head"><svg><use href="#i-calendar"/></svg><h4>Project Planning</h4></div>
+          <p class="cap-lead">Turns a due date into a plan students can follow.</p>
+          <ul>
+            <li>Dated milestones from today to the deadline</li>
+            <li>One clear deliverable per milestone</li>
+            <li>Final-check checklist against the brief</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="flow">
+        <div class="step rv" style="--d:10"><b>Brainstorm</b><span>Understand the task, narrow the scope</span></div>
+        <div class="step rv" style="--d:11"><b>Outline</b><span>Structure and plan for evidence</span></div>
+        <div class="step rv" style="--d:12"><b>Draft</b><span>Argument and evidence against the rubric</span></div>
+        <div class="step rv" style="--d:13"><b>Revision</b><span>Top 3 priorities</span></div>
+        <div class="step teacher rv" style="--d:14"><b>Final check</b><span>Word limit, citations, brief requirements</span></div>
+      </div>
+
+      <div class="sample-q rv" style="--d:15">
+        <div class="sample-q-head"><span>Sample feedback · Draft stage</span><span class="chips"><span class="chip">Grade 9</span><span class="chip">Persuasive essay</span><span class="chip">612 / 800 words</span></span></div>
+        <div class="sample-q-body">
+          <p class="excerpt">"Pollution is bad for everyone. In 2019 the river flooded twice and the fish died. Most factories ignore the rules, so the government must act now…"</p>
+          <div class="fb">
+            <p><b>✔ What's working · Evidence:</b> <mark class="ev">"In 2019 the river flooded twice"</mark> grounds your point in a real local event.</p>
+            <p><b>1 · Argument (developing):</b> <mark class="ev">"Pollution is bad for everyone"</mark> states a topic, not a position.<br>❓ <i>What exactly do you want your reader to believe by the end?</i></p>
+            <p><b>Claim needing support:</b> <mark class="ev">"Most factories ignore the rules"</mark>. Look for an official inspection report or a news investigation.</p>
+            <p><b>Your next step:</b> Rewrite your thesis as one arguable sentence.</p>
+          </div>
+        </div>
+        <details>
+          <summary><svg><use href="#i-arrow-right"/></svg>Show milestone plan</summary>
+          <div class="key">
+            <p><b>Today → due date:</b> 2026-10-07 → 2026-10-27 (20 days, starting from the draft stage)</p>
+            <p><b>By 2026-10-18:</b> complete draft with evidence for every main point · <b>By 2026-10-24:</b> revision of the top 3 priorities · <b>By 2026-10-26:</b> final check against the brief</p>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <!-- 03 PRODUCTIVITY -->
+    <div class="sec">
+      <div class="sec-head rv" style="--d:16"><span class="cap-num">03</span><h3>PRODUCTIVITY</h3></div>
+      <div class="prod-grid">
+        <div class="compare rv rv-l" style="--d:17">
+          <h4>Teacher time on first-round draft feedback, class of 30</h4>
+          <p class="note">Illustrative estimate: the Advisor gives first-round feedback, and the teacher reviews the summaries and focuses on the students who need them most.</p>
+          <div class="bar-row"><span class="lbl">Manual</span><div class="bar manual"><i style="--w:100%">~300 min</i></div></div>
+          <div class="bar-row"><span class="lbl">With Advisor</span><div class="bar copilot"><i style="--w:max(20%,84px)">~60 min</i></div></div>
+          <div class="saved"><strong>~4 hrs</strong><span>saved per assignment, and students get feedback while they can still act on it</span></div>
+        </div>
+        <div class="benefits">
+          <div class="benefit rv" style="--d:18"><svg><use href="#i-clock"/></svg><b>Feedback when it counts</b><span>During drafting, not after submission.</span></div>
+          <div class="benefit rv" style="--d:19"><svg><use href="#i-target"/></svg><b>Rubric-aligned work</b><span>Students see the gap to the next level on each criterion.</span></div>
+          <div class="benefit rv" style="--d:20"><svg><use href="#i-calendar"/></svg><b>On-time submissions</b><span>Milestone plans break big projects into steps students can manage.</span></div>
+          <div class="benefit rv" style="--d:21"><svg><use href="#i-shield"/></svg><b>Authentic student work</b><span>Coaching instead of ghostwriting protects academic integrity.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bridge rv" style="--d:22">
+      <span class="ico-c"><svg style="width:28px;height:28px;color:var(--white)"><use href="#i-spark"/></svg></span>
+      <span>Coach, never ghostwrite: the student's voice, the teacher's standards.</span>
+    </div>
+  </div>
+</section>
+
 <script>
 (function(){
   // ---- Slide 4 rows (text verbatim from the deck; [bold, regular]) ----
