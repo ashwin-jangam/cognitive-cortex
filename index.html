@@ -71,8 +71,8 @@ h1.wordmark span.ch{display:inline-block;opacity:0;transform:translateY(.6em) ro
 .view.in .tagline > :nth-child(4){animation-delay:1.8s}
 .view.in .tagline > :nth-child(5){animation-delay:2.0s}
 
-.nav-cards{margin-top:64px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;width:100%;max-width:1240px}
-.nav-cards .nav-card{padding:20px 18px;gap:12px}
+.nav-cards{margin-top:64px;display:flex;flex-wrap:wrap;justify-content:center;gap:20px;width:100%;max-width:1000px}
+.nav-cards .nav-card{flex:0 1 300px;padding:20px 18px;gap:12px}
 .nav-cards .nav-label{font-size:.95rem;white-space:nowrap}
 .nav-card{position:relative;display:flex;align-items:center;gap:16px;padding:22px 22px;background:var(--white);border:1px solid var(--border);border-radius:14px;text-align:left;overflow:hidden;transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s}
 .nav-card::before{content:"";position:absolute;inset:0;background:var(--tint);transform:scaleY(0);transform-origin:bottom;transition:transform .45s var(--ease);z-index:0}
@@ -299,15 +299,51 @@ mark.ev{background:var(--tint);border-bottom:2px solid var(--green);padding:0 2p
 .msg.s small{color:var(--ink)}
 .excerpt{border-left:4px solid var(--border);background:var(--panel);padding:10px 14px;font-style:italic;margin-bottom:14px;border-radius:0 8px 8px 0}
 
+/* ---------- our standards ---------- */
+.score-chip{display:inline-flex;align-items:center;gap:6px;align-self:flex-start;font-size:.8rem;font-weight:700;color:var(--green);background:var(--tint);border:1px solid var(--green);border-radius:999px;padding:4px 10px}
+.score-chip svg{width:15px;height:15px}
+.pr-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
+.pr{position:relative;display:flex;flex-direction:column;gap:10px;background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:20px 18px;overflow:hidden;transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+.pr::before{content:"";position:absolute;left:0;right:0;top:0;height:5px;background:var(--green);transform:scaleX(0);transform-origin:left}
+.view.in .pr::before{animation:barX 1s var(--ease) forwards;animation-delay:calc(var(--d) * 90ms + 300ms)}
+.pr:hover{transform:translateY(-6px);box-shadow:0 22px 44px -24px rgba(31,35,40,.45)}
+.pr-top{display:flex;align-items:center;justify-content:space-between}
+.pr-top svg{width:30px;height:30px;color:var(--green)}
+.pr-pts{font-size:.75rem;font-weight:700;letter-spacing:.05em;color:var(--green);border:1px solid var(--green);border-radius:999px;padding:2px 8px;background:var(--white)}
+.pr h4{font-size:1.02rem;font-weight:700;line-height:1.3}
+.pr p{font-size:.92rem}
+.pr .eg{margin-top:auto;font-size:.85rem;padding-top:10px;border-top:1px solid var(--border)}
+.pr .eg b{color:var(--green)}
+.gate-grid{margin-top:20px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.gate{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--border);border-radius:10px;padding:12px;background:var(--white);font-size:.9rem}
+.gate svg{width:20px;height:20px;flex:none;color:var(--green);margin-top:1px}
+.gate b{display:block;font-size:.8rem;letter-spacing:.04em;color:var(--green)}
+.bands{margin-top:20px;display:grid;grid-template-columns:60fr 10fr 10fr 10fr 11fr;border-radius:10px;overflow:hidden;border:1px solid var(--border)}
+.band{padding:12px 10px;font-size:.82rem;line-height:1.3;text-align:center}
+.band b{display:block;font-size:.95rem}
+.band.b0{background:var(--panel)}
+.band.b1{background:#E9EEF2}
+.band.b2{background:#DDE5EA}
+.band.b3{background:var(--tint);color:var(--green)}
+.band.b4{background:var(--green);color:var(--white)}
+.score-table td.tot{font-weight:700;color:var(--green);white-space:nowrap}
+.mbar{display:inline-block;vertical-align:middle;width:90px;height:8px;border-radius:4px;background:var(--border);margin-left:8px;overflow:hidden}
+.mbar i{display:block;height:100%;width:0;background:var(--green);border-radius:4px}
+.view.in .mbar i{animation:fill 1.2s var(--ease) .6s forwards}
+
 /* ---------- responsive ---------- */
 @media (max-width:1100px){
-  .nav-cards{grid-template-columns:repeat(2,minmax(0,1fr));max-width:760px}
+  .pr-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .gate-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
   .flow{grid-template-columns:repeat(3,minmax(0,1fr))}
   .step:nth-child(3)::after{display:none}
 }
 @media (max-width:900px){
   .nav-cards,.cap-grid,.about-grid,.sample-grid,.purpose-grid,.qtype-grid,.prod-grid{grid-template-columns:1fr}
   .flow{grid-template-columns:1fr}
+  .pr-grid,.gate-grid{grid-template-columns:1fr}
+  .bands{grid-template-columns:1fr}
+  .score-table th:nth-child(n+2):nth-child(-n+6),.score-table td:nth-child(n+2):nth-child(-n+6){display:none}
   .step::after{display:none}
   .vs{grid-template-columns:1fr}
   .vs{gap:8px}
@@ -323,6 +359,7 @@ mark.ev{background:var(--tint);border-bottom:2px solid var(--green);padding:0 2p
   .mini-brand span{display:none}
   .topbar{flex-wrap:wrap}
   .benefits{grid-template-columns:1fr}
+  .nav-cards .nav-card{flex-basis:100%}
   .bar-row{grid-template-columns:1fr;gap:6px}
   .msg{max-width:94%}
   .crit-table th:nth-child(3),.crit-table td:nth-child(3){display:none}
@@ -331,7 +368,7 @@ mark.ev{background:var(--tint);border-bottom:2px solid var(--green);padding:0 2p
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;animation-delay:0ms!important;transition-duration:.01ms!important}
 }
 </style>
-<noscript><style>.bar i{width:var(--w)!important}.rv,.vs-arrow,.tagline .stage,.tagline .arrow,.footer-quote .w,.site-footer img{opacity:1!important;transform:none!important}</style></noscript>
+<noscript><style>.bar i,.mbar i{width:var(--w)!important}.rv,.vs-arrow,.tagline .stage,.tagline .arrow,.footer-quote .w,.site-footer img{opacity:1!important;transform:none!important}</style></noscript>
 </head>
 <body>
 
@@ -355,6 +392,7 @@ mark.ev{background:var(--tint);border-bottom:2px solid var(--green);padding:0 2p
     <symbol id="i-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/><path d="m9 15 2 2 4-4"/></symbol>
     <symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></symbol>
     <symbol id="i-quote" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h4v4c0 3-1.5 5-4 6"/><path d="M15 7h4v4c0 3-1.5 5-4 6"/></symbol>
+    <symbol id="i-award" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="m9 14.5-1.5 7 4.5-2.5 4.5 2.5-1.5-7"/><path d="m10 9 1.5 1.5L14.5 7.5"/></symbol>
     <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
   </defs>
 </svg>
@@ -392,6 +430,11 @@ mark.ev{background:var(--tint);border-bottom:2px solid var(--green);padding:0 2p
         <span class="nav-label">OUR SAMPLES</span>
         <svg class="nav-go"><use href="#i-arrow-right"/></svg>
       </a>
+      <a class="nav-card rv" style="--d:13" href="#standards">
+        <span class="nav-ico"><svg class="nav-svg"><use href="#i-award"/></svg></span>
+        <span class="nav-label">OUR STANDARDS</span>
+        <svg class="nav-go"><use href="#i-arrow-right"/></svg>
+      </a>
     </nav>
   </div>
 
@@ -408,7 +451,7 @@ mark.ev{background:var(--tint);border-bottom:2px solid var(--green);padding:0 2p
   <div class="page">
     <div class="topbar rv" style="--d:0">
       <a class="back" href="#home"><svg><use href="#i-arrow-left"/></svg>Home</a>
-      <nav class="subnav" aria-label="Sections"><a class="cur" href="#capabilities">OUR CAPABILITIES</a><a href="#about">ABOUT US</a><a href="#why">WHY US</a><a href="#samples">OUR SAMPLES</a></nav>
+      <nav class="subnav" aria-label="Sections"><a class="cur" href="#capabilities">OUR CAPABILITIES</a><a href="#about">ABOUT US</a><a href="#why">WHY US</a><a href="#samples">OUR SAMPLES</a><a href="#standards">OUR STANDARDS</a></nav>
       <div class="mini-brand"><img src="assets/logo.svg" alt=""><span>Cognitive <b class="g">Cortex</b></span></div>
     </div>
     <h2 class="page-title rv" style="--d:1" id="t-cap">OUR CAPABILITIES</h2>
@@ -461,7 +504,7 @@ mark.ev{background:var(--tint);border-bottom:2px solid var(--green);padding:0 2p
   <div class="page">
     <div class="topbar rv" style="--d:0">
       <a class="back" href="#home"><svg><use href="#i-arrow-left"/></svg>Home</a>
-      <nav class="subnav" aria-label="Sections"><a href="#capabilities">OUR CAPABILITIES</a><a class="cur" href="#about">ABOUT US</a><a href="#why">WHY US</a><a href="#samples">OUR SAMPLES</a></nav>
+      <nav class="subnav" aria-label="Sections"><a href="#capabilities">OUR CAPABILITIES</a><a class="cur" href="#about">ABOUT US</a><a href="#why">WHY US</a><a href="#samples">OUR SAMPLES</a><a href="#standards">OUR STANDARDS</a></nav>
       <div class="mini-brand"><img src="assets/logo.svg" alt=""><span>Cognitive <b class="g">Cortex</b></span></div>
     </div>
     <h2 class="page-title rv" style="--d:1" id="t-about">ABOUT US</h2>
@@ -506,7 +549,7 @@ mark.ev{background:var(--tint);border-bottom:2px solid var(--green);padding:0 2p
   <div class="page">
     <div class="topbar rv" style="--d:0">
       <a class="back" href="#home"><svg><use href="#i-arrow-left"/></svg>Home</a>
-      <nav class="subnav" aria-label="Sections"><a href="#capabilities">OUR CAPABILITIES</a><a href="#about">ABOUT US</a><a class="cur" href="#why">WHY US</a><a href="#samples">OUR SAMPLES</a></nav>
+      <nav class="subnav" aria-label="Sections"><a href="#capabilities">OUR CAPABILITIES</a><a href="#about">ABOUT US</a><a class="cur" href="#why">WHY US</a><a href="#samples">OUR SAMPLES</a><a href="#standards">OUR STANDARDS</a></nav>
       <div class="mini-brand"><img src="assets/logo.svg" alt=""><span>Cognitive <b class="g">Cortex</b></span></div>
     </div>
     <h2 class="page-title rv" style="--d:1" id="t-why">WHY US</h2>
@@ -525,7 +568,7 @@ mark.ev{background:var(--tint);border-bottom:2px solid var(--green);padding:0 2p
   <div class="page">
     <div class="topbar rv" style="--d:0">
       <a class="back" href="#home"><svg><use href="#i-arrow-left"/></svg>Home</a>
-      <nav class="subnav" aria-label="Sections"><a href="#capabilities">OUR CAPABILITIES</a><a href="#about">ABOUT US</a><a href="#why">WHY US</a><a class="cur" href="#samples">OUR SAMPLES</a></nav>
+      <nav class="subnav" aria-label="Sections"><a href="#capabilities">OUR CAPABILITIES</a><a href="#about">ABOUT US</a><a href="#why">WHY US</a><a class="cur" href="#samples">OUR SAMPLES</a><a href="#standards">OUR STANDARDS</a></nav>
       <div class="mini-brand"><img src="assets/logo.svg" alt=""><span>Cognitive <b class="g">Cortex</b></span></div>
     </div>
     <h2 class="page-title rv" style="--d:1" id="t-samples">OUR SAMPLES</h2>
@@ -543,6 +586,7 @@ mark.ev{background:var(--tint);border-bottom:2px solid var(--green);padding:0 2p
         <h3>Assessment Copilot</h3>
         <p>Drafts curriculum-aligned assessments in minutes, complete with answer keys, rubrics and teacher notes.</p>
         <div class="chips"><span class="chip">For teachers</span><span class="chip">MCQ</span><span class="chip">Short Answer</span><span class="chip">Logical Reasoning</span></div>
+        <span class="score-chip"><svg><use href="#i-award"/></svg>Design score 95/100</span>
         <span class="sample-go">Explore sample<svg><use href="#i-arrow-right"/></svg></span>
       </a>
       <a class="sample-card rv" style="--d:4" href="#grading-assistant">
@@ -550,6 +594,7 @@ mark.ev{background:var(--tint);border-bottom:2px solid var(--green);padding:0 2p
         <h3>Grading Assistant</h3>
         <p>Suggests rubric-based marks backed by quotes from the student's answer, plus actionable feedback and a class misconception report.</p>
         <div class="chips"><span class="chip">For teachers</span><span class="chip">Rubric Marking</span><span class="chip">Feedback</span><span class="chip">Class Insights</span></div>
+        <span class="score-chip"><svg><use href="#i-award"/></svg>Design score 96/100</span>
         <span class="sample-go">Explore sample<svg><use href="#i-arrow-right"/></svg></span>
       </a>
       <a class="sample-card rv" style="--d:5" href="#self-study-tutor">
@@ -557,6 +602,7 @@ mark.ev{background:var(--tint);border-bottom:2px solid var(--green);padding:0 2p
         <h3>Self-Study Tutor</h3>
         <p>A Socratic tutor that guides students to the answer with questions and step-by-step hints, without giving it away.</p>
         <div class="chips"><span class="chip">For students</span><span class="chip">Homework Help</span><span class="chip">Revision</span><span class="chip">Exam Prep</span></div>
+        <span class="score-chip"><svg><use href="#i-award"/></svg>Design score 96/100</span>
         <span class="sample-go">Explore sample<svg><use href="#i-arrow-right"/></svg></span>
       </a>
       <a class="sample-card rv" style="--d:6" href="#assignment-advisor">
@@ -564,6 +610,7 @@ mark.ev{background:var(--tint);border-bottom:2px solid var(--green);padding:0 2p
         <h3>Assignment Advisor</h3>
         <p>A writing and project mentor that coaches students from first idea to final check, against their teacher's rubric.</p>
         <div class="chips"><span class="chip">For students</span><span class="chip">Essays</span><span class="chip">Projects</span><span class="chip">Planning</span></div>
+        <span class="score-chip"><svg><use href="#i-award"/></svg>Design score 97/100</span>
         <span class="sample-go">Explore sample<svg><use href="#i-arrow-right"/></svg></span>
       </a>
       <div class="sample-card soon rv" style="--d:7">
@@ -580,7 +627,7 @@ mark.ev{background:var(--tint);border-bottom:2px solid var(--green);padding:0 2p
   <div class="page">
     <div class="topbar rv" style="--d:0">
       <a class="back" href="#samples"><svg><use href="#i-arrow-left"/></svg>Samples</a>
-      <nav class="subnav" aria-label="Sections"><a href="#capabilities">OUR CAPABILITIES</a><a href="#about">ABOUT US</a><a href="#why">WHY US</a><a class="cur" href="#samples">OUR SAMPLES</a></nav>
+      <nav class="subnav" aria-label="Sections"><a href="#capabilities">OUR CAPABILITIES</a><a href="#about">ABOUT US</a><a href="#why">WHY US</a><a class="cur" href="#samples">OUR SAMPLES</a><a href="#standards">OUR STANDARDS</a></nav>
       <div class="mini-brand"><img src="assets/logo.svg" alt=""><span>Cognitive <b class="g">Cortex</b></span></div>
     </div>
     <h2 class="page-title rv" style="--d:1" id="t-ac">ASSESSMENT COPILOT</h2>
@@ -711,7 +758,7 @@ mark.ev{background:var(--tint);border-bottom:2px solid var(--green);padding:0 2p
   <div class="page">
     <div class="topbar rv" style="--d:0">
       <a class="back" href="#samples"><svg><use href="#i-arrow-left"/></svg>Samples</a>
-      <nav class="subnav" aria-label="Sections"><a href="#capabilities">OUR CAPABILITIES</a><a href="#about">ABOUT US</a><a href="#why">WHY US</a><a class="cur" href="#samples">OUR SAMPLES</a></nav>
+      <nav class="subnav" aria-label="Sections"><a href="#capabilities">OUR CAPABILITIES</a><a href="#about">ABOUT US</a><a href="#why">WHY US</a><a class="cur" href="#samples">OUR SAMPLES</a><a href="#standards">OUR STANDARDS</a></nav>
       <div class="mini-brand"><img src="assets/logo.svg" alt=""><span>Cognitive <b class="g">Cortex</b></span></div>
     </div>
     <h2 class="page-title rv" style="--d:1" id="t-ga">GRADING ASSISTANT</h2>
@@ -850,7 +897,7 @@ mark.ev{background:var(--tint);border-bottom:2px solid var(--green);padding:0 2p
   <div class="page">
     <div class="topbar rv" style="--d:0">
       <a class="back" href="#samples"><svg><use href="#i-arrow-left"/></svg>Samples</a>
-      <nav class="subnav" aria-label="Sections"><a href="#capabilities">OUR CAPABILITIES</a><a href="#about">ABOUT US</a><a href="#why">WHY US</a><a class="cur" href="#samples">OUR SAMPLES</a></nav>
+      <nav class="subnav" aria-label="Sections"><a href="#capabilities">OUR CAPABILITIES</a><a href="#about">ABOUT US</a><a href="#why">WHY US</a><a class="cur" href="#samples">OUR SAMPLES</a><a href="#standards">OUR STANDARDS</a></nav>
       <div class="mini-brand"><img src="assets/logo.svg" alt=""><span>Cognitive <b class="g">Cortex</b></span></div>
     </div>
     <h2 class="page-title rv" style="--d:1" id="t-st">SELF-STUDY TUTOR</h2>
@@ -985,7 +1032,7 @@ mark.ev{background:var(--tint);border-bottom:2px solid var(--green);padding:0 2p
   <div class="page">
     <div class="topbar rv" style="--d:0">
       <a class="back" href="#samples"><svg><use href="#i-arrow-left"/></svg>Samples</a>
-      <nav class="subnav" aria-label="Sections"><a href="#capabilities">OUR CAPABILITIES</a><a href="#about">ABOUT US</a><a href="#why">WHY US</a><a class="cur" href="#samples">OUR SAMPLES</a></nav>
+      <nav class="subnav" aria-label="Sections"><a href="#capabilities">OUR CAPABILITIES</a><a href="#about">ABOUT US</a><a href="#why">WHY US</a><a class="cur" href="#samples">OUR SAMPLES</a><a href="#standards">OUR STANDARDS</a></nav>
       <div class="mini-brand"><img src="assets/logo.svg" alt=""><span>Cognitive <b class="g">Cortex</b></span></div>
     </div>
     <h2 class="page-title rv" style="--d:1" id="t-aa">ASSIGNMENT ADVISOR</h2>
@@ -1107,6 +1154,147 @@ mark.ev{background:var(--tint);border-bottom:2px solid var(--green);padding:0 2p
     <div class="bridge rv" style="--d:22">
       <span class="ico-c"><svg style="width:28px;height:28px;color:var(--white)"><use href="#i-spark"/></svg></span>
       <span>Coach, never ghostwrite: the student's voice, the teacher's standards.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= OUR STANDARDS : DESIGN RUBRIC ======================= -->
+<section id="standards" class="view" aria-labelledby="t-std">
+  <div class="page">
+    <div class="topbar rv" style="--d:0">
+      <a class="back" href="#home"><svg><use href="#i-arrow-left"/></svg>Home</a>
+      <nav class="subnav" aria-label="Sections"><a href="#capabilities">OUR CAPABILITIES</a><a href="#about">ABOUT US</a><a href="#why">WHY US</a><a href="#samples">OUR SAMPLES</a><a class="cur" href="#standards">OUR STANDARDS</a></nav>
+      <div class="mini-brand"><img src="assets/logo.svg" alt=""><span>Cognitive <b class="g">Cortex</b></span></div>
+    </div>
+    <h2 class="page-title rv" style="--d:1" id="t-std">OUR STANDARDS</h2>
+
+    <div class="vision rv" style="--d:2">
+      <img src="assets/logo.svg" alt="">
+      <span class="vision-label">DESIGN RUBRIC</span>
+      <p>Every agent we build is scored against a <span class="g">100-point rubric across five design principles</span>, so schools get AI that is predictable, verifiable and built for real classrooms.</p>
+      <span class="shine" aria-hidden="true"></span>
+    </div>
+
+    <!-- 01 WHY IT MATTERS -->
+    <div class="sec">
+      <div class="sec-head rv" style="--d:3"><span class="cap-num">01</span><h3>WHY IT MATTERS</h3></div>
+      <div class="purpose-grid">
+        <div class="panel challenge rv rv-l" style="--d:4">
+          <span class="topline"></span>
+          <div class="panel-head"><h3>TYPICAL AI TOOLS</h3></div>
+          <ul>
+            <li><svg><use href="#i-x"/></svg><span>Give different answers to the same request.</span></li>
+            <li><svg><use href="#i-x"/></svg><span>Sound confident while inventing facts, sources and quotes.</span></li>
+            <li><svg><use href="#i-x"/></svg><span>Return free-form text that's hard to check, share or import.</span></li>
+            <li><svg><use href="#i-x"/></svg><span>Are built as one-off prompts for demos, not daily workflows.</span></li>
+            <li><svg><use href="#i-x"/></svg><span>Pad every response and ask question after question.</span></li>
+          </ul>
+        </div>
+        <div class="panel goal rv rv-r" style="--d:5">
+          <span class="topline"></span>
+          <div class="panel-head"><h3>THE COGNITIVE CORTEX STANDARD</h3></div>
+          <ul>
+            <li><svg><use href="#i-check-plain"/></svg><span><b>Predictable:</b> the same input gets the same kind of decision, every time.</span></li>
+            <li><svg><use href="#i-check-plain"/></svg><span><b>Verifiable:</b> every claim traces back to the curriculum or the student's own work.</span></li>
+            <li><svg><use href="#i-check-plain"/></svg><span><b>Structured:</b> clear outputs for teachers and students, ready to export to your LMS.</span></li>
+            <li><svg><use href="#i-check-plain"/></svg><span><b>Reusable:</b> works across subjects, grades and boards, and the agents work together.</span></li>
+            <li><svg><use href="#i-check-plain"/></svg><span><b>Concise:</b> respects teachers' time, with one clarifying question at most.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 FIVE PRINCIPLES -->
+    <div class="sec">
+      <div class="sec-head rv" style="--d:6"><span class="cap-num">02</span><h3>FIVE DESIGN PRINCIPLES</h3></div>
+      <div class="pr-grid">
+        <article class="pr rv" style="--d:7">
+          <div class="pr-top"><svg><use href="#i-list"/></svg><span class="pr-pts">20 PTS</span></div>
+          <h4>Deterministic Execution</h4>
+          <p>Numbered procedures and decision tables replace "use your judgment".</p>
+          <p class="eg"><b>In practice:</b> marks and dates are calculated with a fixed method, never estimated.</p>
+        </article>
+        <article class="pr rv" style="--d:8">
+          <div class="pr-top"><svg><use href="#i-shield"/></svg><span class="pr-pts">20 PTS</span></div>
+          <h4>Verification &amp; Anti-Hallucination</h4>
+          <p>Every claim cites a source, and output only goes out after passing checks.</p>
+          <p class="eg"><b>In practice:</b> "evidence or zero": no mark without a quote from the student's answer.</p>
+        </article>
+        <article class="pr rv" style="--d:9">
+          <div class="pr-top"><svg><use href="#i-layers"/></svg><span class="pr-pts">20 PTS</span></div>
+          <h4>Output Schema Quality</h4>
+          <p>Fixed templates and versioned data formats, separated for each audience.</p>
+          <p class="eg"><b>In practice:</b> a printable student paper, a teacher-only key, and an LMS export.</p>
+        </article>
+        <article class="pr rv" style="--d:10">
+          <div class="pr-top"><svg><use href="#i-target"/></svg><span class="pr-pts">20 PTS</span></div>
+          <h4>Reusability &amp; Real Utility</h4>
+          <p>Works with any curriculum, and handles the follow-up requests teachers really make.</p>
+          <p class="eg"><b>In practice:</b> Assessment Copilot rubrics feed straight into Grading Assistant.</p>
+        </article>
+        <article class="pr rv" style="--d:11">
+          <div class="pr-top"><svg><use href="#i-clock"/></svg><span class="pr-pts">20 PTS</span></div>
+          <h4>Zero Context Bloat</h4>
+          <p>Lean instructions and short outputs: every word earns its place.</p>
+          <p class="eg"><b>In practice:</b> each agent is under 250 lines and never restates your inputs back to you.</p>
+        </article>
+      </div>
+    </div>
+
+    <!-- 03 HOW WE SCORE -->
+    <div class="sec">
+      <div class="sec-head rv" style="--d:12"><span class="cap-num">03</span><h3>HOW WE SCORE</h3></div>
+      <div class="flow">
+        <div class="step rv" style="--d:13"><b>Hard gates</b><span>5 must-pass checks. Failing any one caps the score at 59</span></div>
+        <div class="step rv" style="--d:14"><b>20 criteria</b><span>4 per principle, each scored 0–5 against fixed descriptions</span></div>
+        <div class="step rv" style="--d:15"><b>Cited evidence</b><span>Every score points to where in the agent the evidence is</span></div>
+        <div class="step rv" style="--d:16"><b>Two reviewers</b><span>Independent scores, with disagreements resolved</span></div>
+        <div class="step teacher rv" style="--d:17"><b>Behaviour tests</b><span>10–15 test cases confirm what the design promises</span></div>
+      </div>
+      <div class="gate-grid">
+        <div class="gate rv" style="--d:18"><svg><use href="#i-check"/></svg><span><b>G1 IDENTITY</b>Clear name and purpose</span></div>
+        <div class="gate rv" style="--d:18"><svg><use href="#i-check"/></svg><span><b>G2 NO FABRICATION</b>Nothing permits invented facts or sources</span></div>
+        <div class="gate rv" style="--d:19"><svg><use href="#i-check"/></svg><span><b>G3 DEFINED OUTPUT</b>A template or schema for every output</span></div>
+        <div class="gate rv" style="--d:19"><svg><use href="#i-check"/></svg><span><b>G4 HUMAN CONTROL</b>Teacher approval, integrity and safeguarding</span></div>
+        <div class="gate rv" style="--d:20"><svg><use href="#i-check"/></svg><span><b>G5 PRIVACY</b>No unnecessary student data</span></div>
+      </div>
+      <div class="bands rv" style="--d:21" role="list" aria-label="Score bands">
+        <div class="band b0" role="listitem"><b>&lt;60</b>Not ready</div>
+        <div class="band b1" role="listitem"><b>60–69</b>Weak</div>
+        <div class="band b2" role="listitem"><b>70–79</b>Adequate</div>
+        <div class="band b3" role="listitem"><b>80–89</b>Strong</div>
+        <div class="band b4" role="listitem"><b>90–100</b>Exemplary</div>
+      </div>
+    </div>
+
+    <!-- 04 OUR SCORES -->
+    <div class="sec">
+      <div class="sec-head rv" style="--d:22"><span class="cap-num">04</span><h3>OUR AGENTS' SCORES</h3></div>
+      <div class="sample-q rv" style="--d:23">
+        <div class="sample-q-head"><span>Design-review scores · out of 20 per principle</span><span class="chips"><span class="chip">Provisional</span><span class="chip">Behavioural testing to follow</span></span></div>
+        <div class="sample-q-body">
+          <table class="crit-table score-table">
+            <thead><tr><th>Agent</th><th>Deterministic</th><th>Verification</th><th>Schema</th><th>Reusability</th><th>Context</th><th>Total</th></tr></thead>
+            <tbody>
+              <tr><td><a href="#assessment-copilot"><b>Assessment Copilot</b></a></td><td class="n">19</td><td class="n">19</td><td class="n">19</td><td class="n">19</td><td class="n">19</td><td class="tot">95 <span class="mbar"><i style="--w:95%"></i></span></td></tr>
+              <tr><td><a href="#grading-assistant"><b>Grading Assistant</b></a></td><td class="n">19</td><td class="n">20</td><td class="n">20</td><td class="n">19</td><td class="n">18</td><td class="tot">96 <span class="mbar"><i style="--w:96%"></i></span></td></tr>
+              <tr><td><a href="#self-study-tutor"><b>Self-Study Tutor</b></a></td><td class="n">19</td><td class="n">19</td><td class="n">20</td><td class="n">19</td><td class="n">19</td><td class="tot">96 <span class="mbar"><i style="--w:96%"></i></span></td></tr>
+              <tr><td><a href="#assignment-advisor"><b>Assignment Advisor</b></a></td><td class="n">20</td><td class="n">20</td><td class="n">19</td><td class="n">18</td><td class="n">20</td><td class="tot">97 <span class="mbar"><i style="--w:97%"></i></span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <details>
+          <summary><svg><use href="#i-arrow-right"/></svg>What "provisional" means</summary>
+          <div class="key">
+            <p>These scores measure how each agent is <b>designed</b>, based on a criterion-by-criterion review of its instructions. Before a score is final, our rubric requires an independent second reviewer and a behavioural test pass rate of 85% or more. We'll publish both as they're completed.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <div class="bridge rv" style="--d:24">
+      <span class="ico-c"><svg style="width:28px;height:28px;color:var(--white)"><use href="#i-spark"/></svg></span>
+      <span>Not just AI tools: AI that schools can trust, check and measure.</span>
     </div>
   </div>
 </section>
