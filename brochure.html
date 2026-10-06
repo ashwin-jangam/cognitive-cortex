@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cognitive Cortex Brochure</title>
+<style>
+/* Tri-fold (roll fold) brochure, US Letter landscape, two sides.
+   Side A (outside): [inside flap] [back] [front cover]
+   Side B (inside):  [left] [middle] [right]
+   Palette matches index.html. */
+:root{
+  --white:#FFFFFF;
+  --ink:#1F2328;
+  --green:#1F883D;
+  --green-d:#176B30;
+  --panel:#F6F8FA;
+  --border:#D0D7DE;
+  --tint:#F2FAF4;
+  --muted:#57606A;
+  --font:"Segoe UI",-apple-system,BlinkMacSystemFont,system-ui,Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+@page{size:11in 8.5in;margin:0}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#E6E9ED}
+body{font-family:var(--font);color:var(--ink);font-size:8.6pt;line-height:1.38;-webkit-font-smoothing:antialiased;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+img{display:block}
+ul{list-style:none}
+b,strong{font-weight:700}
+.g{color:var(--green)}
+
+.sheet{width:11in;height:8.5in;margin:.4in auto;background:var(--white);display:grid;grid-template-columns:repeat(3,1fr);box-shadow:0 6px 30px rgba(0,0,0,.18);position:relative;overflow:hidden}
+.sheet + .sheet{margin-top:0}
+.side-label{width:11in;margin:.4in auto 0;font:600 9pt var(--font);color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.panel{position:relative;padding:.38in .34in;display:flex;flex-direction:column;min-height:0;overflow:hidden}
+/* fold guides on screen only */
+.panel + .panel::before{content:"";position:absolute;left:0;top:0;bottom:0;border-left:1px dashed #C9CED4}
+@media print{
+  html,body{background:none}
+  .sheet{margin:0;box-shadow:none;page-break-after:always;break-after:page}
+  .side-label{display:none}
+  .panel + .panel::before{display:none}
+}
+
+/* ---------- shared ---------- */
+.eyebrow{font-size:7pt;font-weight:700;letter-spacing:.14em;color:var(--green);text-transform:uppercase}
+h2{font-size:15pt;line-height:1.1;font-weight:800;letter-spacing:.01em;margin:.04in 0 .12in}
+h2::after{content:"";display:block;width:.42in;height:3px;background:var(--green);border-radius:2px;margin-top:.08in}
+h3{font-size:9.6pt;font-weight:700;line-height:1.2}
+.lede{font-size:9pt;color:var(--ink);margin-bottom:.14in}
+.ico{width:.3in;height:.3in;flex:none}
+.check li,.cross li{position:relative;padding-left:14px;margin-top:3px}
+.check li::before,.cross li::before{position:absolute;left:0;top:0;font-weight:700}
+.check li::before{content:"✓";color:var(--green)}
+.cross li::before{content:"✕";color:#B35900}
+
+/* ---------- cover ---------- */
+.cover{background:var(--ink);color:var(--white);justify-content:space-between}
+.cover .net{position:absolute;inset:0;width:100%;height:100%;opacity:.5}
+.cover > *{position:relative}
+.brand{display:flex;align-items:center;gap:10px}
+.brand img{width:.5in;height:.5in}
+.brand span{font-size:13pt;font-weight:700;letter-spacing:.01em}
+.cover h1{font-size:30pt;line-height:1.02;font-weight:800;letter-spacing:-.01em}
+.cover h1 .g{color:#4AC26B}
+.journey{margin-top:.22in;display:flex;flex-direction:column;gap:6px}
+.journey div{display:flex;align-items:center;gap:8px;font-size:10.5pt;font-weight:600}
+.journey i{font-style:normal;display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;border:1.5px solid #4AC26B;color:#4AC26B;font-size:8pt;font-weight:700}
+.journey div:last-child i{background:#4AC26B;color:var(--ink)}
+.cover .sub{font-size:9.5pt;color:#C9D1D9;max-width:2.8in}
+.cover .sub b{color:var(--white)}
+
+/* ---------- back ---------- */
+.back{background:var(--tint);justify-content:space-between;text-align:center;align-items:center}
+.back .big-logo{width:1in;height:1in;margin:.1in auto .16in}
+.back .quote{font-size:15pt;font-weight:800;line-height:1.2}
+.back .quote .g{display:block}
+.back .bridge{margin-top:.2in;font-size:9pt;color:var(--muted);max-width:2.6in}
+.contact{width:100%;border-top:1px solid var(--border);padding-top:.14in;font-size:8.6pt}
+.contact .k{font-size:7pt;font-weight:700;letter-spacing:.14em;color:var(--green);text-transform:uppercase;margin-bottom:4px}
+.contact .slot{display:block;margin:3px auto;padding:3px 8px;border:1px dashed var(--border);border-radius:4px;color:var(--muted);max-width:2.4in}
+.trust{display:flex;justify-content:center;gap:6px;margin-top:.14in;flex-wrap:wrap}
+.trust span{font-size:7pt;font-weight:600;padding:2px 7px;border-radius:999px;background:var(--white);border:1px solid var(--border)}
+
+/* ---------- why us ---------- */
+.vs{display:flex;flex-direction:column;gap:5px}
+.vs-row{border:1px solid var(--border);border-radius:6px;overflow:hidden;background:var(--white)}
+.vs-row .old{padding:3px 8px;font-size:7.6pt;color:var(--muted);background:var(--panel);text-decoration:line-through;text-decoration-color:rgba(87,96,106,.5)}
+.vs-row .new{padding:4px 8px 5px;font-size:8.2pt;border-left:3px solid var(--green)}
+.vs-row .new b{color:var(--green-d)}
+.why-foot{margin-top:auto;display:flex;gap:8px;align-items:center;padding-top:.12in;font-weight:600;font-size:8.6pt}
+
+/* ---------- about ---------- */
+.vision{background:var(--ink);color:var(--white);border-radius:8px;padding:.12in .14in;margin-bottom:.14in}
+.vision .eyebrow{color:#4AC26B}
+.vision p{margin-top:3px;font-size:8.8pt}
+.vision b{color:#4AC26B}
+.ph{display:flex;align-items:center;justify-content:space-between;margin:.06in 0 .04in}
+.ph .ico{width:.26in;height:.26in}
+.identity-note{margin-top:5px;font-weight:600;color:var(--green-d)}
+.principles{display:grid;gap:5px;margin-top:.02in}
+.principles li{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:4px 8px}
+.principles b{display:block;font-size:8.4pt}
+.principles span{font-size:7.8pt;color:var(--muted)}
+
+/* ---------- capabilities ---------- */
+.caps{display:flex;flex-direction:column;gap:.12in;flex:1}
+.cap{border:1px solid var(--border);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;flex:1}
+.cap-h{display:flex;gap:8px;align-items:center;padding:6px 10px;background:var(--panel);border-bottom:1px solid var(--border)}
+.cap-h .n{font-size:13pt;font-weight:800;color:var(--green);line-height:1}
+.cap-b{padding:5px 10px 6px;flex:1}
+.cap-b .tag{font-style:italic;color:var(--muted);font-size:8pt}
+.cap-out{display:flex;gap:7px;align-items:center;background:var(--tint);padding:5px 10px;font-weight:700;font-size:8pt;color:var(--green-d);border-top:1px solid #CDE9D5}
+.cap-out .ico{width:.22in;height:.22in}
+
+/* ---------- samples + standards ---------- */
+.agents{display:flex;flex-direction:column;gap:5px}
+.agent{border:1px solid var(--border);border-radius:6px;padding:5px 8px;display:grid;grid-template-columns:1fr auto;column-gap:8px;row-gap:1px;align-items:baseline}
+.agent h3{font-size:9pt}
+.agent .who{font-size:6.6pt;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green)}
+.agent p{grid-column:1 / -1;font-size:7.8pt;color:var(--muted)}
+.agent .save{grid-column:1 / -1;display:flex;justify-content:space-between;gap:6px;font-size:7.6pt;margin-top:2px;padding-top:3px;border-top:1px dotted var(--border)}
+.agent .save b{color:var(--green-d)}
+.std{margin-top:.16in;background:var(--tint);border:1px solid #CDE9D5;border-radius:8px;padding:.1in .12in}
+.std h3{margin:.03in 0 .04in}
+.std p{font-size:7.9pt}
+.pillars{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin:.08in 0 .06in}
+.pillars div{background:var(--white);border:1px solid var(--border);border-radius:5px;text-align:center;padding:4px 2px;font-size:6.6pt;font-weight:600;line-height:1.15}
+.pillars div b{display:block;color:var(--green);font-size:8.6pt}
+.std .gates{font-size:7.4pt;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<!-- ======================= SIDE A · OUTSIDE ======================= -->
+<p class="side-label">Side A · Outside (inside flap · back · front cover)</p>
+<div class="sheet">
+
+  <!-- Inside flap: Why Us -->
+  <section class="panel">
+    <p class="eyebrow">Why Us</p>
+    <h2>Beyond introducing AI tools</h2>
+    <p class="lede">We bridge the gap between what AI can do and what schools actually need.</p>
+    <div class="vs">
+      <div class="vs-row"><div class="old">Tool-first: start with an AI product, find a use case</div><div class="new"><b>School-first</b>: start with the school's priorities, curriculum and workflows</div></div>
+      <div class="vs-row"><div class="old">Point solutions for isolated problems</div><div class="new"><b>Integrated AI ecosystem</b> across people, teaching and school operations</div></div>
+      <div class="vs-row"><div class="old">One-time AI training</div><div class="new"><b>Continuous capability building</b> through champions</div></div>
+      <div class="vs-row"><div class="old">Generic AI copilots</div><div class="new"><b>School-context AI</b> grounded in curriculum, pedagogy and needs</div></div>
+      <div class="vs-row"><div class="old">Teacher or student focused</div><div class="new"><b>Whole-school transformation</b>: teachers, students and operations</div></div>
+      <div class="vs-row"><div class="old">AI adoption without visibility</div><div class="new"><b>Governed adoption</b> with policies, approved tools, data guardrails</div></div>
+      <div class="vs-row"><div class="old">Implementation measured by usage</div><div class="new"><b>Impact measured by outcomes</b>: productivity, teaching</div></div>
+      <div class="vs-row"><div class="old">Standalone technology</div><div class="new"><b>Connected infrastructure</b> integrated with existing tools and workflows</div></div>
+    </div>
+  </section>
+
+  <!-- Back panel -->
+  <section class="panel back">
+    <div>
+      <img class="big-logo" src="assets/logo.svg" alt="Cognitive Cortex logo">
+      <p class="quote">The Future of Schooling is AI&#8209;Native. <span class="g">Let's Build It Together.</span></p>
+      <p class="bridge">Your AI Transformation Partner for schools: deep AI expertise, combined with a real understanding of pedagogy, curriculum and classrooms.</p>
+      <div class="trust"><span>Predictable</span><span>Verifiable</span><span>Structured</span><span>Reusable</span><span>Concise</span></div>
+    </div>
+    <div class="contact">
+      <p class="k">Get in touch</p>
+      <span class="slot">Email address</span>
+      <span class="slot">Website</span>
+      <span class="slot">Phone</span>
+    </div>
+  </section>
+
+  <!-- Front cover -->
+  <section class="panel cover">
+    <svg class="net" viewBox="0 0 366 816" aria-hidden="true">
+      <g stroke="#4AC26B" stroke-opacity=".35" stroke-width="1" fill="none">
+        <path d="M40 120 L150 60 L290 140 L330 260 L210 300 L90 240 Z M150 60 L210 300 M90 240 L290 140"/>
+        <path d="M30 620 L140 560 L260 600 L340 720 L200 760 L70 730 Z M140 560 L200 760 M260 600 L70 730"/>
+      </g>
+      <g fill="#4AC26B" fill-opacity=".6">
+        <circle cx="40" cy="120" r="3"/><circle cx="150" cy="60" r="4"/><circle cx="290" cy="140" r="3"/><circle cx="330" cy="260" r="3"/><circle cx="210" cy="300" r="4"/><circle cx="90" cy="240" r="3"/>
+        <circle cx="30" cy="620" r="3"/><circle cx="140" cy="560" r="4"/><circle cx="260" cy="600" r="3"/><circle cx="340" cy="720" r="3"/><circle cx="200" cy="760" r="4"/><circle cx="70" cy="730" r="3"/>
+      </g>
+    </svg>
+    <div class="brand"><img src="assets/logo.svg" alt=""><span>Cognitive <span style="color:#4AC26B">Cortex</span></span></div>
+    <div>
+      <h1>Building <span class="g">AI&#8209;Native</span> Schools</h1>
+      <div class="journey">
+        <div><i>1</i>AI-Ready</div>
+        <div><i>2</i>AI-Enabled</div>
+        <div><i>3</i>AI-Native</div>
+      </div>
+    </div>
+    <p class="sub"><b>The AI Transformation Partner for schools.</b> Capability, tools and governance that make AI part of teaching, learning, operations and decision-making.</p>
+  </section>
+</div>
+
+<!-- ======================= SIDE B · INSIDE ======================= -->
+<p class="side-label">Side B · Inside (left · middle · right)</p>
+<div class="sheet">
+
+  <!-- Inside left: About Us -->
+  <section class="panel">
+    <p class="eyebrow">About Us</p>
+    <h2>School-first AI transformation</h2>
+    <div class="vision">
+      <p class="eyebrow">Vision</p>
+      <p>To build <b>AI-Ready → AI-Enabled → AI-Native Schools</b>, where AI becomes an integrated capability across teaching, learning, operations and decision-making.</p>
+    </div>
+    <div class="ph"><h3>Our Identity</h3><img class="ico" src="assets/icons/school.png" alt=""></div>
+    <ul class="check">
+      <li>Deep expertise in AI transformation, technology and emerging AI capabilities</li>
+      <li>Understanding of pedagogy, curriculum, teachers and the realities of school environments</li>
+    </ul>
+    <p class="identity-note">We empower schools beyond introducing AI tools.</p>
+    <div class="ph" style="margin-top:.12in"><h3>Our Principles</h3><img class="ico" src="assets/icons/compass.png" alt=""></div>
+    <ul class="principles">
+      <li><b>School-First, Not Tool-First</b><span>Start with the school's goals, curriculum, people and workflows.</span></li>
+      <li><b>Augment, Never Replace</b><span>AI amplifies the expertise and judgement of educators.</span></li>
+      <li><b>Outcomes Over Adoption</b><span>Success is time saved, teaching effectiveness and learning impact.</span></li>
+      <li><b>Responsible by Design</b><span>Privacy, safety, transparency, ethics and governance.</span></li>
+      <li><b>Practical Before Perfect</b><span>Real workflows and measurable improvements, today.</span></li>
+      <li><b>Built for Scale</b><span>Systems that evolve as AI, pedagogy and needs change.</span></li>
+    </ul>
+  </section>
+
+  <!-- Inside middle: Capabilities -->
+  <section class="panel">
+    <p class="eyebrow">Our Capabilities</p>
+    <h2>Three ways we help</h2>
+    <div class="caps">
+      <div class="cap">
+        <div class="cap-h"><span class="n">01</span><h3>AI Education Cohorts</h3></div>
+        <div class="cap-b">
+          <p class="tag">Empowering schools to build AI capabilities</p>
+          <ul class="check">
+            <li>Future-ready staff and students using AI responsibly, confidently and productively</li>
+            <li>AI Champions developed to lead, scale and sustain adoption</li>
+            <li>Role-based learning focused on practical school workflows</li>
+          </ul>
+        </div>
+        <div class="cap-out"><img class="ico" src="assets/icons/graduation-cap.png" alt="">School-wide responsible AI culture &amp; capability</div>
+      </div>
+      <div class="cap">
+        <div class="cap-h"><span class="n">02</span><h3>AI Enabled Teacher OS</h3></div>
+        <div class="cap-b">
+          <p class="tag">Teachers equipped to plan, create and personalise learning</p>
+          <ul class="check">
+            <li>More productive, personalised and data-informed educators</li>
+            <li>Intelligent teaching workflows that reduce repetitive workload</li>
+            <li>Curriculum-grounded AI aligned to your pedagogy and classrooms</li>
+          </ul>
+        </div>
+        <div class="cap-out"><img class="ico" src="assets/icons/presentation.png" alt="">Less admin, better learning experiences</div>
+      </div>
+      <div class="cap">
+        <div class="cap-h"><span class="n">03</span><h3>AI Operating Eco-System</h3></div>
+        <div class="cap-b">
+          <p class="tag">The infrastructure to govern and scale</p>
+          <ul class="check">
+            <li>AI governance by design: policies, approved tools, guardrails</li>
+            <li>Connected workflows with school systems (ERP, LMS, communications)</li>
+            <li>Data-driven insights into AI adoption, usage and productivity</li>
+          </ul>
+        </div>
+        <div class="cap-out"><img class="ico" src="assets/icons/network.png" alt="">Connected, governed &amp; measurable ecosystem</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Inside right: Samples + Standards -->
+  <section class="panel">
+    <p class="eyebrow">Our Samples</p>
+    <h2>AI agents in practice</h2>
+    <div class="agents">
+      <div class="agent"><h3>Assessment Copilot</h3><span class="who">Teachers</span>
+        <p>Curriculum-aligned MCQ, short-answer and reasoning questions with answer keys and rubrics.</p>
+        <div class="save"><span>10-question assessment: <b>~90 → ~20 min</b></span><span>Score <b>95</b></span></div></div>
+      <div class="agent"><h3>Grading Assistant</h3><span class="who">Teachers</span>
+        <p>Rubric-based marks backed by quotes, actionable feedback and a class misconception report.</p>
+        <div class="save"><span>30 written answers: <b>~150 → ~45 min</b></span><span>Score <b>96</b></span></div></div>
+      <div class="agent"><h3>Self-Study Tutor</h3><span class="who">Students</span>
+        <p>A Socratic tutor that guides students to the answer with questions and hints, never giving it away.</p>
+        <div class="save"><span>Weekly re-explaining: <b>~60 → ~20 min</b></span><span>Score <b>96</b></span></div></div>
+      <div class="agent"><h3>Assignment Advisor</h3><span class="who">Students</span>
+        <p>A writing and project mentor that coaches from first idea to final check, against the rubric.</p>
+        <div class="save"><span>Draft feedback (30): <b>~300 → ~60 min</b></span><span>Score <b>97</b></span></div></div>
+    </div>
+    <div class="std">
+      <p class="eyebrow">Our Standards</p>
+      <h3>Scored on a 100-point design rubric</h3>
+      <div class="pillars">
+        <div><b>20</b>Deter&shy;ministic</div>
+        <div><b>20</b>Verified</div>
+        <div><b>20</b>Structured output</div>
+        <div><b>20</b>Reusable</div>
+        <div><b>20</b>Concise</div>
+      </div>
+      <p class="gates">Five must-pass gates: identity, no fabrication, defined output, human control, privacy. Time savings are illustrative estimates; scores are provisional design-review scores.</p>
+    </div>
+  </section>
+</div>
+
+</body>
+</html>
