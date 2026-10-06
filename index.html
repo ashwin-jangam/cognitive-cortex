@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cognitive Cortex</title>
+<meta name="description" content="Building AI-Ready → AI-Enabled → AI-Native Schools">
+<link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+<link rel="apple-touch-icon" href="assets/logo.png">
+<style>
+/* Palette taken verbatim from CognitiveCortex_v2.pptx */
+:root{
+  --white:#FFFFFF;
+  --ink:#1F2328;
+  --green:#1F883D;
+  --panel:#F6F8FA;
+  --border:#D0D7DE;
+  --tint:#F2FAF4;
+  --text:#000000;
+  --font:"Segoe UI",-apple-system,BlinkMacSystemFont,system-ui,Roboto,"Helvetica Neue",Arial,sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--white);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.5;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:3px solid var(--green);outline-offset:3px;border-radius:6px}
+
+/* ---------- views ---------- */
+.view{display:none;min-height:100vh;position:relative}
+.view.active{display:block}
+
+/* staggered reveal: children with .rv animate in when their view becomes active */
+.rv{opacity:0;transform:translateY(26px)}
+.view.in .rv{animation:rise .8s var(--ease) forwards;animation-delay:calc(var(--d,0) * 90ms + 80ms)}
+@keyframes rise{to{opacity:1;transform:none}}
+.view.in .rv-l{animation-name:fromLeft}
+.view.in .rv-r{animation-name:fromRight}
+.rv-l{transform:translateX(-40px)}
+.rv-r{transform:translateX(40px)}
+@keyframes fromLeft{to{opacity:1;transform:none}}
+@keyframes fromRight{to{opacity:1;transform:none}}
+
+/* ---------- landing ---------- */
+#home{display:none;flex-direction:column}
+#home.active{display:flex}
+#net{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.hero{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:96px 16px 56px;text-align:center}
+.brand-row{display:flex;align-items:center;gap:28px;flex-wrap:wrap;justify-content:center}
+.logo-wrap{position:relative;width:120px;height:120px;flex:none}
+.logo-wrap img{width:100%;height:100%;position:relative;z-index:1;animation:float 6s ease-in-out infinite}
+.logo-wrap::before,.logo-wrap::after{content:"";position:absolute;inset:0;border-radius:28%;border:2px solid var(--green);opacity:0;animation:ripple 3.2s var(--ease) infinite}
+.logo-wrap::after{animation-delay:1.6s}
+@keyframes ripple{0%{transform:scale(1);opacity:.55}100%{transform:scale(1.7);opacity:0}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.title-block{text-align:left}
+h1.wordmark{font-size:clamp(2.1rem,7.5vw,5rem);font-weight:700;line-height:1.05;color:var(--ink);letter-spacing:-.02em}
+h1.wordmark .g{color:var(--green)}
+h1.wordmark span.ch{display:inline-block;opacity:0;transform:translateY(.6em) rotate(6deg)}
+.view.in h1.wordmark span.ch{animation:charIn .7s var(--ease) forwards;animation-delay:calc(var(--c) * 45ms + 250ms)}
+@keyframes charIn{to{opacity:1;transform:none}}
+.tagline{margin-top:14px;font-style:italic;font-size:clamp(1rem,2.2vw,1.25rem);color:var(--text)}
+.tagline .stage{display:inline-block;opacity:0;transform:translateY(8px)}
+.tagline .arrow{display:inline-block;opacity:0;margin:0 .35em}
+.view.in .tagline .stage,.view.in .tagline .arrow{animation:rise .6s var(--ease) forwards}
+.view.in .tagline > :nth-child(1){animation-delay:1.0s}
+.view.in .tagline > :nth-child(2){animation-delay:1.3s}
+.view.in .tagline > :nth-child(3){animation-delay:1.5s}
+.view.in .tagline > :nth-child(4){animation-delay:1.8s}
+.view.in .tagline > :nth-child(5){animation-delay:2.0s}
+
+.nav-cards{margin-top:64px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;width:100%;max-width:960px}
+.nav-card{position:relative;display:flex;align-items:center;gap:16px;padding:22px 22px;background:var(--white);border:1px solid var(--border);border-radius:14px;text-align:left;overflow:hidden;transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s}
+.nav-card::before{content:"";position:absolute;inset:0;background:var(--tint);transform:scaleY(0);transform-origin:bottom;transition:transform .45s var(--ease);z-index:0}
+.nav-card > *{position:relative;z-index:1}
+.nav-card:hover,.nav-card:focus-visible{transform:translateY(-6px);border-color:var(--green);box-shadow:0 18px 40px -18px rgba(31,136,61,.45)}
+.nav-card:hover::before,.nav-card:focus-visible::before{transform:scaleY(1)}
+.nav-ico{width:52px;height:52px;flex:none;border-radius:12px;background:var(--tint);border:1px solid var(--border);display:grid;place-items:center;transition:transform .45s var(--ease),background .3s}
+.nav-ico img,.nav-svg{width:30px;height:30px}
+.nav-svg{color:var(--green)}
+.nav-card:hover .nav-ico{transform:rotate(-8deg) scale(1.08);background:var(--white)}
+.nav-label{flex:1;font-weight:700;font-size:1.05rem;letter-spacing:.04em;color:var(--green)}
+.nav-go{width:22px;height:22px;color:var(--ink);transition:transform .35s var(--ease)}
+.nav-card:hover .nav-go{transform:translateX(6px);color:var(--green)}
+
+/* footer (slide 5) */
+.site-footer{position:relative;z-index:1;background:var(--panel);border-top:1px solid var(--border);padding:48px 16px}
+.footer-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;gap:28px}
+.footer-inner img{width:76px;height:76px;flex:none}
+.footer-quote{font-style:italic;font-size:clamp(1.25rem,3vw,1.75rem);line-height:1.35;color:var(--text)}
+.footer-quote .w{display:inline-block;opacity:0;transform:translateY(10px)}
+.site-footer.seen .footer-quote .w{animation:rise .6s var(--ease) forwards;animation-delay:calc(var(--w) * 70ms)}
+.site-footer img{opacity:0;transform:scale(.6) rotate(-20deg);transition:all .9s var(--ease)}
+.site-footer.seen img{opacity:1;transform:none}
+
+/* ---------- sub-page chrome (shared across slides 2–4) ---------- */
+.page{max-width:1240px;margin:0 auto;padding:28px 16px 64px}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:28px}
+.back{display:inline-flex;align-items:center;gap:8px;padding:8px 14px 8px 10px;border:1px solid var(--border);border-radius:999px;background:var(--white);color:var(--ink);transition:all .3s var(--ease)}
+.back svg{width:18px;height:18px;transition:transform .3s var(--ease)}
+.back:hover{border-color:var(--green);color:var(--green)}
+.back:hover svg{transform:translateX(-4px)}
+.mini-brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:.95rem;color:var(--ink)}
+.mini-brand img{width:30px;height:30px}
+.mini-brand .g{color:var(--green)}
+.page-title{display:inline-block;font-size:clamp(1.5rem,3.2vw,2rem);font-weight:700;color:var(--green);letter-spacing:.03em;margin-bottom:28px;position:relative}
+.page-title::after{content:"";position:absolute;left:0;bottom:-6px;height:3px;width:0;background:var(--green);border-radius:2px}
+.view.in .page-title::after{animation:grow 1s var(--ease) .5s forwards}
+@keyframes grow{to{width:56px}}
+.subnav{display:flex;gap:8px;flex-wrap:wrap}
+.subnav a{font-size:.85rem;font-weight:600;padding:6px 12px;border-radius:999px;color:var(--ink);border:1px solid transparent;transition:all .25s}
+.subnav a:hover{border-color:var(--border);background:var(--panel)}
+.subnav a.cur{background:var(--tint);border-color:var(--green);color:var(--green)}
+
+/* ---------- slide 2: capabilities ---------- */
+.cap-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.cap{display:flex;flex-direction:column;gap:16px}
+.cap-card{position:relative;flex:1;background:var(--panel);border:1px solid var(--border);padding:22px 22px 26px 30px;transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+.cap-card::before{content:"";position:absolute;left:-1px;top:-1px;bottom:-1px;width:9px;background:var(--ink);transform:scaleY(0);transform-origin:top}
+.view.in .cap-card::before{animation:barDown .9s var(--ease) forwards;animation-delay:calc(var(--d) * 90ms + 300ms)}
+@keyframes barDown{to{transform:scaleY(1)}}
+.cap-card:hover{transform:translateY(-6px);box-shadow:0 22px 44px -24px rgba(31,35,40,.45)}
+.cap-head{display:flex;align-items:baseline;gap:12px;margin-bottom:10px}
+.cap-num{font-size:1.65rem;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums}
+.cap-name{font-size:1.15rem;font-weight:700}
+.cap-lead{font-size:1rem;margin-bottom:12px}
+.cap ul{list-style:none;display:grid;gap:14px}
+.cap li{position:relative;padding-left:22px;font-size:1rem}
+.cap li::before{content:"";position:absolute;left:4px;top:.6em;width:7px;height:7px;border-radius:50%;background:var(--text)}
+.cap-out{display:flex;align-items:center;gap:14px}
+.cap-out .ico{width:48px;height:48px;flex:none;animation:bob 3.6s ease-in-out infinite;animation-delay:calc(var(--d) * -.6s)}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.cap-out p{font-weight:700;font-size:1.15rem;line-height:1.3;color:var(--green)}
+
+/* ---------- slide 3: about us ---------- */
+.vision{position:relative;display:flex;align-items:center;gap:20px;background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:16px 22px 16px 28px;overflow:hidden;margin-bottom:24px}
+.vision::before{content:"";position:absolute;left:0;top:0;bottom:0;width:9px;background:var(--ink)}
+.vision img{width:56px;height:56px;flex:none;animation:float 5s ease-in-out infinite}
+.vision-label{font-weight:700;font-size:1.05rem;flex:none;width:90px}
+.vision p{font-weight:700;font-size:1.15rem;line-height:1.4}
+.vision .g{color:var(--green)}
+.vision .shine{position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.85) 50%,transparent 70%);transform:translateX(-100%);pointer-events:none}
+.view.in .vision .shine{animation:shine 1.6s ease-in-out 1s forwards}
+@keyframes shine{to{transform:translateX(100%)}}
+.about-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.25fr);gap:24px}
+.panel{position:relative;border:1px solid var(--border);border-radius:10px;padding:28px 22px 24px;overflow:hidden}
+.panel.identity{background:var(--border)}
+.panel.principles{background:var(--white)}
+.panel .topline{position:absolute;left:0;right:0;top:0;height:5px;background:var(--text);transform:scaleX(0);transform-origin:left}
+.panel.principles .topline{height:7px;background:var(--green)}
+.view.in .panel .topline{animation:barX 1s var(--ease) .5s forwards}
+@keyframes barX{to{transform:scaleX(1)}}
+.panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
+.panel-head h3{font-size:1.15rem;font-weight:700;color:var(--green);letter-spacing:.03em}
+.panel-head img{width:34px;height:34px;animation:spinSlow 14s linear infinite}
+.identity .panel-head img{animation:bob 3.6s ease-in-out infinite}
+@keyframes spinSlow{to{transform:rotate(360deg)}}
+.identity p{font-size:1rem;margin-bottom:12px}
+.identity ul{list-style:none;display:grid;gap:12px;margin-bottom:16px}
+.identity li{position:relative;padding-left:22px;font-size:1rem}
+.identity li::before{content:"";position:absolute;left:3px;top:.55em;width:8px;height:8px;border-radius:50%;border:1.5px solid var(--text)}
+.identity .emph{font-size:1.07rem}
+.principles ul{list-style:none;display:grid;gap:12px}
+.principles li{display:flex;gap:12px;align-items:flex-start;padding:10px 12px;border-radius:8px;font-size:1rem;transition:background .3s,transform .3s var(--ease)}
+.principles li:hover{background:var(--tint);transform:translateX(6px)}
+.chk{width:22px;height:22px;flex:none;margin-top:1px;color:var(--green)}
+.chk path{stroke-dasharray:24;stroke-dashoffset:24}
+.view.in .chk path{animation:draw .6s ease forwards;animation-delay:calc(var(--d) * 120ms + 600ms)}
+@keyframes draw{to{stroke-dashoffset:0}}
+
+/* ---------- slide 4: why us ---------- */
+.vs{display:grid;grid-template-columns:minmax(0,1fr) 44px minmax(0,1.12fr);gap:12px 10px;align-items:center}
+.vs-row{display:contents}
+.pill{display:flex;align-items:center;gap:10px;min-height:44px;padding:9px 14px;border-radius:8px;border:1px solid var(--border);font-size:.95rem;line-height:1.35;transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.pill.old{background:var(--panel)}
+.pill.new{background:var(--tint)}
+.pill.new:hover{transform:translateX(4px);box-shadow:0 10px 26px -16px rgba(31,136,61,.6);border-color:var(--green)}
+.pill svg{width:18px;height:18px;flex:none}
+.pill.old svg{color:var(--ink);opacity:.55}
+.pill.new svg{color:var(--green)}
+.vs-arrow{display:grid;place-items:center;color:var(--green);opacity:0}
+.vs-arrow svg{width:22px;height:22px}
+.view.in .vs-arrow{animation:arrowIn .5s var(--ease) forwards,nudge 2.4s ease-in-out infinite;animation-delay:calc(var(--d) * 90ms + 500ms),calc(var(--d) * 90ms + 1100ms)}
+@keyframes arrowIn{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:none}}
+@keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(4px)}}
+.bridge{margin-top:24px;display:flex;align-items:center;gap:14px;background:var(--green);color:var(--white);border-radius:10px;padding:12px 18px;font-weight:700;font-size:1.05rem;position:relative;overflow:hidden}
+.bridge .ico-c{width:34px;height:34px;flex:none;display:grid;place-items:center}
+.bridge .ico-c img{width:30px;height:30px;animation:bob 3.6s ease-in-out infinite}
+.bridge::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 35%,rgba(255,255,255,.28) 50%,transparent 65%);transform:translateX(-100%);animation:shine 3.5s ease-in-out 1.6s infinite}
+
+/* ---------- responsive ---------- */
+@media (max-width:900px){
+  .nav-cards,.cap-grid,.about-grid{grid-template-columns:1fr}
+  .vs{grid-template-columns:1fr}
+  .vs{gap:8px}
+  .vs-arrow{display:none}
+  .vs-row .pill.old{margin-top:14px}
+}
+@media (max-width:640px){
+  .brand-row{flex-direction:column;gap:18px}
+  .title-block{text-align:center}
+  .logo-wrap{width:96px;height:96px}
+  .footer-inner{flex-direction:column;text-align:center}
+  .vision{flex-wrap:wrap}
+  .mini-brand span{display:none}
+  .topbar{flex-wrap:wrap}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;animation-delay:0ms!important;transition-duration:.01ms!important}
+}
+</style>
+<noscript><style>.rv,.vs-arrow,.tagline .stage,.tagline .arrow,.footer-quote .w,.site-footer img{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+    <symbol id="i-arrow-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" stroke-width="1.6" opacity=".35"/><path d="m7.5 12.5 3 3 6-6.5"/></symbol>
+    <symbol id="i-check-plain" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+  </defs>
+</svg>
+
+<!-- ======================= SLIDE 1 + SLIDE 5 : LANDING ======================= -->
+<section id="home" class="view" aria-label="Cognitive Cortex">
+  <canvas id="net" aria-hidden="true"></canvas>
+  <div class="hero">
+    <div class="brand-row">
+      <div class="logo-wrap rv" style="--d:0"><img src="assets/logo.svg" alt="Cognitive Cortex logo"></div>
+      <div class="title-block">
+        <h1 class="wordmark" data-split><span class="k">Cognitive </span><span class="g">Cortex</span></h1>
+        <p class="tagline"><span class="stage">Building AI-Ready</span><span class="arrow">→</span><span class="stage">AI-Enabled</span><span class="arrow">→</span><span class="stage">AI-Native Schools</span></p>
+      </div>
+    </div>
+
+    <nav class="nav-cards" aria-label="Sections">
+      <a class="nav-card rv" style="--d:9" href="#capabilities">
+        <span class="nav-ico"><img src="assets/icons/network.png" alt=""></span>
+        <span class="nav-label">OUR CAPABILITIES</span>
+        <svg class="nav-go"><use href="#i-arrow-right"/></svg>
+      </a>
+      <a class="nav-card rv" style="--d:10" href="#about">
+        <span class="nav-ico"><img src="assets/icons/school.png" alt=""></span>
+        <span class="nav-label">ABOUT US</span>
+        <svg class="nav-go"><use href="#i-arrow-right"/></svg>
+      </a>
+      <a class="nav-card rv" style="--d:11" href="#why">
+        <span class="nav-ico"><svg class="nav-svg"><use href="#i-link"/></svg></span>
+        <span class="nav-label">WHY US</span>
+        <svg class="nav-go"><use href="#i-arrow-right"/></svg>
+      </a>
+    </nav>
+  </div>
+
+  <footer class="site-footer" id="footer">
+    <div class="footer-inner">
+      <img src="assets/logo.svg" alt="">
+      <p class="footer-quote" data-words>The Future of Schooling is AI-Native. Let’s Build It Together.</p>
+    </div>
+  </footer>
+</section>
+
+<!-- ======================= SLIDE 2 : OUR CAPABILITIES ======================= -->
+<section id="capabilities" class="view" aria-labelledby="t-cap">
+  <div class="page">
+    <div class="topbar rv" style="--d:0">
+      <a class="back" href="#home"><svg><use href="#i-arrow-left"/></svg>Home</a>
+      <nav class="subnav" aria-label="Sections"><a class="cur" href="#capabilities">OUR CAPABILITIES</a><a href="#about">ABOUT US</a><a href="#why">WHY US</a></nav>
+      <div class="mini-brand"><img src="assets/logo.svg" alt=""><span>Cognitive <b class="g">Cortex</b></span></div>
+    </div>
+    <h2 class="page-title rv" style="--d:1" id="t-cap">OUR CAPABILITIES</h2>
+
+    <div class="cap-grid">
+      <div class="cap">
+        <article class="cap-card rv" style="--d:2">
+          <div class="cap-head"><span class="cap-num">01</span><h3 class="cap-name">AI Education Cohorts</h3></div>
+          <p class="cap-lead">Empowering Schools Build AI Capabilities</p>
+          <ul>
+            <li>Future-ready staff &amp; students equipped to use AI responsibly, confidently and productively.</li>
+            <li>AI Champions developed to lead, scale and sustain AI adoption</li>
+            <li>Role-based AI Learning focussed on practical school workflows (not generic)</li>
+          </ul>
+        </article>
+        <div class="cap-out rv" style="--d:5"><img class="ico" src="assets/icons/graduation-cap.png" alt=""><p>School-Wide Responsible AI Culture &amp; Capability</p></div>
+      </div>
+
+      <div class="cap">
+        <article class="cap-card rv" style="--d:3">
+          <div class="cap-head"><span class="cap-num">02</span><h3 class="cap-name">AI Enabled Teacher OS</h3></div>
+          <p class="cap-lead">AI-Powered Teachers equipped to plan, create and personalize learning</p>
+          <ul>
+            <li>Transform every teacher into a more productive, personalised and data-informed educator</li>
+            <li>Intelligent Teaching workflows that reduce repetitive workload</li>
+            <li>Curriculum-grounded AI aligned to the school's pedagogy, curriculum and classroom context</li>
+          </ul>
+        </article>
+        <div class="cap-out rv" style="--d:6"><img class="ico" src="assets/icons/presentation.png" alt=""><p>Reduced Administrative Burden, Improved Learning Experiences</p></div>
+      </div>
+
+      <div class="cap">
+        <article class="cap-card rv" style="--d:4">
+          <div class="cap-head"><span class="cap-num">03</span><h3 class="cap-name">AI Operating Eco-System</h3></div>
+          <p class="cap-lead">Supporting Schools create the infrastructure to govern and scale</p>
+          <ul>
+            <li>AI governance by design with defined policies, approved tools and responsible AI guardrails</li>
+            <li>Connected AI workflows integrated with school systems (ERP, LMS, Communications etc.)</li>
+            <li>Data-driven insights into AI adoption, usage and productivity</li>
+          </ul>
+        </article>
+        <div class="cap-out rv" style="--d:7"><img class="ico" src="assets/icons/network.png" alt=""><p>Connected, Governed &amp; Measurable Ecosystem</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= SLIDE 3 : ABOUT US ======================= -->
+<section id="about" class="view" aria-labelledby="t-about">
+  <div class="page">
+    <div class="topbar rv" style="--d:0">
+      <a class="back" href="#home"><svg><use href="#i-arrow-left"/></svg>Home</a>
+      <nav class="subnav" aria-label="Sections"><a href="#capabilities">OUR CAPABILITIES</a><a class="cur" href="#about">ABOUT US</a><a href="#why">WHY US</a></nav>
+      <div class="mini-brand"><img src="assets/logo.svg" alt=""><span>Cognitive <b class="g">Cortex</b></span></div>
+    </div>
+    <h2 class="page-title rv" style="--d:1" id="t-about">ABOUT US</h2>
+
+    <div class="vision rv" style="--d:2">
+      <img src="assets/logo.svg" alt="">
+      <span class="vision-label">VISION</span>
+      <p>Our Vision is to build <span class="g">AI-Ready → AI-Enabled → AI-Native Schools</span>, where AI becomes an integrated capability across teaching, learning, operations and decision-making.</p>
+      <span class="shine" aria-hidden="true"></span>
+    </div>
+
+    <div class="about-grid">
+      <div class="panel identity rv rv-l" style="--d:3">
+        <span class="topline"></span>
+        <div class="panel-head"><h3>OUR IDENTITY</h3><img src="assets/icons/school.png" alt=""></div>
+        <p>We are the AI Transformation Partner for schools built on</p>
+        <ul>
+          <li>Deep expertise in AI transformation, technology and emerging AI capabilities.</li>
+          <li>Understanding of pedagogy, curriculum, teachers and the realities of school environments</li>
+        </ul>
+        <p class="emph">We empower schools beyond introducing AI tools !</p>
+      </div>
+
+      <div class="panel principles rv rv-r" style="--d:4">
+        <span class="topline"></span>
+        <div class="panel-head"><h3>OUR PRINCIPLES</h3><img src="assets/icons/compass.png" alt=""></div>
+        <ul>
+          <li><svg class="chk" style="--d:1"><use href="#i-check-plain"/></svg><span><b>School-First, Not Tool-First </b>: Start with the school's goals, curriculum, people and workflows—not with a technology.</span></li>
+          <li><svg class="chk" style="--d:2"><use href="#i-check-plain"/></svg><span><b>Augment, Never Replace </b>: AI should amplify human capability, especially the expertise and judgement of educators.</span></li>
+          <li><svg class="chk" style="--d:3"><use href="#i-check-plain"/></svg><span><b>Outcomes Over Adoption </b>: Measure success by time saved, teaching effectiveness, learning impact and institutional value not simply AI usage.</span></li>
+          <li><svg class="chk" style="--d:4"><use href="#i-check-plain"/></svg><span><b>Responsible by Design </b>: Build AI adoption around privacy, safety, transparency, ethics and appropriate governance.</span></li>
+          <li><svg class="chk" style="--d:5"><use href="#i-check-plain"/></svg><span><b>Practical Before Perfect </b>: Focus on real workflows and measurable improvements that schools can implement today.</span></li>
+          <li><svg class="chk" style="--d:6"><use href="#i-check-plain"/></svg><span><b>Built for Scale </b>: Create systems, skills and infrastructure that evolve as AI, pedagogy and school needs change.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= SLIDE 4 : WHY US ======================= -->
+<section id="why" class="view" aria-labelledby="t-why">
+  <div class="page">
+    <div class="topbar rv" style="--d:0">
+      <a class="back" href="#home"><svg><use href="#i-arrow-left"/></svg>Home</a>
+      <nav class="subnav" aria-label="Sections"><a href="#capabilities">OUR CAPABILITIES</a><a href="#about">ABOUT US</a><a class="cur" href="#why">WHY US</a></nav>
+      <div class="mini-brand"><img src="assets/logo.svg" alt=""><span>Cognitive <b class="g">Cortex</b></span></div>
+    </div>
+    <h2 class="page-title rv" style="--d:1" id="t-why">WHY US</h2>
+
+    <div class="vs" id="vs"></div>
+
+    <div class="bridge rv" style="--d:12">
+      <span class="ico-c"><img src="assets/icons/link.png" alt=""></span>
+      <span>We bridge the gap between what AI can do and what schools actually need.</span>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  // ---- Slide 4 rows (text verbatim from the deck; [bold, regular]) ----
+  var rows = [
+    [["Tool-first"," - Start with an AI product and find a use case"], ["School-first"," — Start with the school's priorities, curriculum and workflows"]],
+    [["Point solutions"," for isolated problems"], ["Integrated AI ecosystem"," across people, teaching and school operations"]],
+    [["One-time AI training",""], ["Continuous capability building"," through champions"]],
+    [["Generic AI copilots",""], ["School-context AI"," grounded in curriculum, pedagogy and needs"]],
+    [["Teacher or student focused",""], ["Whole-school transformation"," — teachers, students and operations"]],
+    [["AI adoption without visibility",""], ["Governed adoption"," with policies, approved tools, data guardrails"]],
+    [["Implementation measured by usage",""], ["Impact measured by outcomes"," — productivity, teaching"]],
+    [["Standalone technology",""], ["Connected infrastructure"," integrated with existing tools and workflows"]]
+  ];
+  function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+  var vs = document.getElementById("vs"), html = "";
+  rows.forEach(function(r,i){
+    var d = i + 2;
+    html += '<div class="vs-row">'
+      + '<div class="pill old rv rv-l" style="--d:'+d+'"><svg><use href="#i-x"/></svg><span><b>'+esc(r[0][0])+'</b>'+esc(r[0][1])+'</span></div>'
+      + '<div class="vs-arrow" style="--d:'+d+'" aria-hidden="true"><svg><use href="#i-arrow-right"/></svg></div>'
+      + '<div class="pill new rv rv-r" style="--d:'+(d+1)+'"><svg><use href="#i-check-plain"/></svg><span><b>'+esc(r[1][0])+'</b>'+esc(r[1][1])+'</span></div>'
+      + '</div>';
+  });
+  vs.innerHTML = html;
+
+  // ---- split wordmark into animated characters (text unchanged) ----
+  var c = 0;
+  document.querySelectorAll("[data-split] > span").forEach(function(part){
+    var t = part.textContent; part.textContent = "";
+    for (var k=0;k<t.length;k++){
+      var s = document.createElement("span");
+      s.className = "ch"; s.style.setProperty("--c", c++);
+      s.textContent = t[k] === " " ? " " : t[k];
+      part.appendChild(s);
+    }
+  });
+  document.querySelectorAll("[data-words]").forEach(function(p){
+    var words = p.textContent.split(" "); p.textContent = "";
+    words.forEach(function(w,i){
+      var s = document.createElement("span"); s.className = "w"; s.style.setProperty("--w", i);
+      s.textContent = w; p.appendChild(s);
+      if (i < words.length-1) p.appendChild(document.createTextNode(" "));
+    });
+  });
+
+  // ---- hash router with re-triggered entrance animations ----
+  var views = Array.prototype.slice.call(document.querySelectorAll(".view"));
+  function show(){
+    var id = (location.hash || "#home").slice(1);
+    if (id === "footer") id = "home";
+    var target = document.getElementById(id);
+    if (!target || !target.classList.contains("view")) target = document.getElementById("home");
+    views.forEach(function(v){ v.classList.remove("active","in"); });
+    target.classList.add("active");
+    void target.offsetWidth;          // restart CSS animations
+    target.classList.add("in");
+    window.scrollTo(0,0);
+    document.title = target.id === "home" ? "Cognitive Cortex" : target.querySelector(".page-title").textContent.replace(/\b\w+/g,function(w){return w[0]+w.slice(1).toLowerCase()}) + " · Cognitive Cortex";
+    if (target.id === "home") startNet(); else stopNet();
+  }
+  window.addEventListener("hashchange", show);
+
+  // ---- footer reveal on scroll ----
+  var footer = document.getElementById("footer");
+  if ("IntersectionObserver" in window){
+    new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting) footer.classList.add("seen"); }); },{threshold:.35}).observe(footer);
+  } else footer.classList.add("seen");
+
+  // ---- neural-network background (deck greens only) ----
+  var cv = document.getElementById("net"), ctx = cv.getContext("2d"), nodes = [], raf = null, W, H, dpr;
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var mouse = {x:-9999,y:-9999};
+  function size(){
+    dpr = Math.min(window.devicePixelRatio||1, 2);
+    W = cv.clientWidth; H = cv.clientHeight;
+    cv.width = W*dpr; cv.height = H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+    var n = Math.round(Math.min(90, W*H/16000));
+    nodes = [];
+    for (var i=0;i<n;i++) nodes.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35,r:Math.random()*1.8+1.2,p:Math.random()*Math.PI*2});
+  }
+  function frame(){
+    ctx.clearRect(0,0,W,H);
+    var L = 140;
+    for (var i=0;i<nodes.length;i++){
+      var a = nodes[i];
+      if (!reduce){ a.x += a.vx; a.y += a.vy; a.p += .03; }
+      if (a.x<0||a.x>W) a.vx*=-1; if (a.y<0||a.y>H) a.vy*=-1;
+      for (var j=i+1;j<nodes.length;j++){
+        var b = nodes[j], dx=a.x-b.x, dy=a.y-b.y, d=Math.sqrt(dx*dx+dy*dy);
+        if (d<L){ ctx.strokeStyle="rgba(31,136,61,"+(0.16*(1-d/L))+")"; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); }
+      }
+      var md = Math.hypot(a.x-mouse.x, a.y-mouse.y);
+      if (md<180){ ctx.strokeStyle="rgba(31,136,61,"+(0.35*(1-md/180))+")"; ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(mouse.x,mouse.y); ctx.stroke(); }
+      ctx.fillStyle = "rgba(31,136,61,"+(0.35+0.25*Math.sin(a.p))+")";
+      ctx.beginPath(); ctx.arc(a.x,a.y,a.r,0,Math.PI*2); ctx.fill();
+    }
+    raf = reduce ? null : requestAnimationFrame(frame);
+  }
+  function startNet(){ size(); if (!raf) frame(); }
+  function stopNet(){ if (raf) cancelAnimationFrame(raf); raf = null; }
+  window.addEventListener("resize", function(){ if (document.getElementById("home").classList.contains("active")) size(); });
+  document.getElementById("home").addEventListener("pointermove", function(e){ var r = cv.getBoundingClientRect(); mouse.x=e.clientX-r.left; mouse.y=e.clientY-r.top; });
+  document.getElementById("home").addEventListener("pointerleave", function(){ mouse.x=mouse.y=-9999; });
+
+  show();
+})();
+</script>
+</body>
+</html>
