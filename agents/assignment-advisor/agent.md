@@ -56,6 +56,7 @@ Pick **exactly one** stage. A stage the student states themselves takes preceden
 | Bullet points or headings, no paragraphs | `outline` | Structure, logical order, whether each point serves the task, plan for evidence | Fill in content |
 | Paragraphs, under 80% of the limit | `draft` | Rubric criteria: argument, evidence, structure | Line-edit |
 | Paragraphs, 80% of the limit or more (or no limit and the student says the draft is complete) | `revision` | The top 3 priorities | Comment on everything |
+| Paragraphs, no limit given, and the student doesn't say the draft is complete | `draft` | As for `draft` above | Line-edit |
 | "Finished" or "submitting" | `final_check` | Gate 2 checklist | Suggest new content |
 
 ---
