@@ -48,6 +48,15 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 #home.active{display:flex}
 #net{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
 .hero{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:96px 16px 56px;text-align:center}
+.hero-copy{max-width:760px;margin:20px auto 0;font-size:clamp(1.05rem,2vw,1.3rem);line-height:1.55;color:var(--ink)}
+.hero-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:24px}
+.hero-action{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:12px 20px;border:1px solid var(--green);border-radius:999px;background:var(--green);color:var(--white);font-weight:700;transition:transform .25s var(--ease),box-shadow .25s,border-color .25s}
+.hero-action svg{width:18px;height:18px}
+.hero-action:hover{transform:translateY(-2px);box-shadow:0 8px 22px -12px rgba(31,136,61,.75)}
+.hero-action.secondary{background:var(--white);color:var(--green)}
+.hero-proof{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 20px;margin-top:18px;color:var(--ink);font-size:.9rem}
+.hero-proof span{display:inline-flex;align-items:center;gap:6px}
+.hero-proof svg{width:16px;height:16px;color:var(--green)}
 .brand-row{display:flex;align-items:center;gap:28px;flex-wrap:wrap;justify-content:center}
 .logo-wrap{position:relative;width:120px;height:120px;flex:none}
 .logo-wrap img{width:100%;height:100%;position:relative;z-index:1;animation:float 6s ease-in-out infinite}
@@ -194,6 +203,29 @@ h1.wordmark span.ch{display:inline-block;opacity:0;transform:translateY(.6em) ro
 
 /* ---------- samples gallery ---------- */
 .sample-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.demo-intro{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin:40px 0 16px}
+.demo-intro h3{font-size:clamp(1.35rem,2.8vw,1.8rem);line-height:1.2;color:var(--ink)}
+.demo-intro p{max-width:530px;font-size:.95rem;color:var(--ink)}
+.demo-note{display:inline-flex;align-items:center;gap:7px;margin-top:9px;padding:5px 10px;border:1px solid var(--border);border-radius:999px;background:var(--panel);font-size:.78rem;font-weight:600}
+.demo-note svg{width:15px;height:15px;color:var(--green)}
+.demo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-bottom:32px}
+.demo-card{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.demo-card summary{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 20px;cursor:pointer;list-style:none;font-weight:700;color:var(--ink)}
+.demo-card summary::-webkit-details-marker{display:none}
+.demo-card summary::after{content:"+";display:grid;place-items:center;width:28px;height:28px;flex:none;border:1px solid var(--border);border-radius:50%;color:var(--green);font-size:1.15rem}
+.demo-card[open] summary::after{content:"−"}
+.demo-card summary:focus-visible{outline-offset:-4px}
+.demo-type{display:block;margin-bottom:3px;color:var(--green);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase}
+.demo-content{padding:0 20px 20px;border-top:1px solid var(--border);font-size:.94rem}
+.demo-prompt{margin:16px 0;padding:12px 14px;border-left:3px solid var(--border);background:var(--panel);border-radius:0 8px 8px 0}
+.demo-result{padding:14px;background:var(--tint);border:1px solid var(--border);border-radius:8px}
+.demo-result p+p{margin-top:8px}
+.demo-result b{color:var(--ink)}
+.demo-result .demo-label{display:inline-block;margin-bottom:7px;color:var(--green);font-size:.74rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+.demo-content details{margin-top:10px}
+.demo-content details summary{padding:9px 0;color:var(--green);font-size:.9rem}
+.demo-content details summary::after{width:22px;height:22px}
+.demo-content details p{margin-top:8px}
 .sample-card{position:relative;display:flex;flex-direction:column;gap:14px;padding:26px 24px 22px;background:var(--white);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s}
 .sample-card::before{content:"";position:absolute;left:0;right:0;top:0;height:5px;background:var(--green);transform:scaleX(0);transform-origin:left}
 .view.in .sample-card::before{animation:barX 1s var(--ease) .5s forwards}
@@ -340,6 +372,7 @@ mark.ev{background:var(--tint);border-bottom:2px solid var(--green);padding:0 2p
 }
 @media (max-width:900px){
   .nav-cards,.cap-grid,.about-grid,.sample-grid,.purpose-grid,.qtype-grid,.prod-grid{grid-template-columns:1fr}
+  .demo-grid{grid-template-columns:1fr}
   .flow{grid-template-columns:1fr}
   .pr-grid,.gate-grid{grid-template-columns:1fr}
   .bands{grid-template-columns:1fr}
@@ -354,6 +387,10 @@ mark.ev{background:var(--tint);border-bottom:2px solid var(--green);padding:0 2p
   .brand-row{flex-direction:column;gap:18px}
   .title-block{text-align:center}
   .logo-wrap{width:96px;height:96px}
+  .hero{padding:72px 16px 44px}
+  .hero-proof{max-width:340px;margin-inline:auto}
+  .demo-intro{display:block}
+  .demo-intro p{margin-top:8px}
   .footer-inner{flex-direction:column;text-align:center}
   .vision{flex-wrap:wrap}
   .mini-brand span{display:none}
@@ -407,6 +444,16 @@ mark.ev{background:var(--tint);border-bottom:2px solid var(--green);padding:0 2p
         <h1 class="wordmark" data-split><span class="k">Cognitive </span><span class="g">Cortex</span></h1>
         <p class="tagline"><span class="stage">Building AI-Ready</span><span class="arrow">→</span><span class="stage">AI-Enabled</span><span class="arrow">→</span><span class="stage">AI-Native Schools</span></p>
       </div>
+    </div>
+    <p class="hero-copy rv" style="--d:2">Practical AI agents that help schools create assessments, give evidence-backed feedback and support student learning—with teachers in control.</p>
+    <div class="hero-actions rv" style="--d:3">
+      <a class="hero-action" href="#samples">Explore agent demos <svg><use href="#i-arrow-right"/></svg></a>
+      <a class="hero-action secondary" href="#capabilities">How we help schools</a>
+    </div>
+    <div class="hero-proof rv" style="--d:4" aria-label="Our approach">
+      <span><svg><use href="#i-check-plain"/></svg>Curriculum-grounded</span>
+      <span><svg><use href="#i-check-plain"/></svg>Teacher-reviewed</span>
+      <span><svg><use href="#i-check-plain"/></svg>Evidence you can inspect</span>
     </div>
 
     <nav class="nav-cards" aria-label="Sections">
@@ -576,8 +623,72 @@ mark.ev{background:var(--tint);border-bottom:2px solid var(--green);padding:0 2p
     <div class="vision rv" style="--d:2">
       <img src="assets/logo.svg" alt="">
       <span class="vision-label">IN PRACTICE</span>
-      <p>Working AI agents built for <span class="g">real school workflows</span>: grounded in curriculum, designed around the teacher, measured by time given back to teaching.</p>
+      <p>Explore sample workflows for <span class="g">real classroom needs</span>: grounded in curriculum, designed around the teacher, with outputs teachers can review.</p>
       <span class="shine" aria-hidden="true"></span>
+    </div>
+
+    <div class="demo-intro rv" style="--d:3">
+      <div>
+        <h3>See what each agent does</h3>
+        <span class="demo-note"><svg><use href="#i-shield"/></svg>Guided examples · no AI processing or data collection</span>
+      </div>
+      <p>Open a sample to see the kind of input each agent receives and the kind of output it produces. These fictional examples are illustrative, not live AI responses.</p>
+    </div>
+    <div class="demo-grid">
+      <details class="demo-card rv" style="--d:4">
+        <summary><span><span class="demo-type">For teachers · Build</span>Assessment Copilot</span></summary>
+        <div class="demo-content">
+          <p class="demo-prompt"><b>Sample request:</b> Grade 7 Science · Heat and conduction · Create one question using the provided lesson excerpt.</p>
+          <div class="demo-result">
+            <span class="demo-label">Illustrative output</span>
+            <p><b>Question:</b> A steel spoon and a wooden spoon are placed in hot water. Which handle becomes hotter, and why?</p>
+            <p><b>Answer:</b> The steel handle; metal conducts heat better than wood.</p>
+            <p><b>Evidence:</b> The supplied excerpt says, “Metals conduct heat well.”</p>
+            <p><b>Teacher review:</b> Check alignment and adapt the wording before use.</p>
+          </div>
+        </div>
+      </details>
+      <details class="demo-card rv" style="--d:5">
+        <summary><span><span class="demo-type">For teachers · Review</span>Grading Assistant</span></summary>
+        <div class="demo-content">
+          <p class="demo-prompt"><b>Sample response:</b> “The steel handle gets hotter because metal conducts heat.”</p>
+          <div class="demo-result">
+            <span class="demo-label">Illustrative output</span>
+            <p><b>Suggested mark:</b> 1/1 for identifying the steel handle.</p>
+            <p><b>Evidence:</b> “The steel handle gets hotter”</p>
+            <p><b>Feedback:</b> You identified which handle gets hotter. What property of metal explains this?</p>
+            <p><b>Status:</b> Suggested — teacher approval required.</p>
+          </div>
+        </div>
+      </details>
+      <details class="demo-card rv" style="--d:6">
+        <summary><span><span class="demo-type">For students · Learn</span>Self-Study Tutor</span></summary>
+        <div class="demo-content">
+          <p class="demo-prompt"><b>Student:</b> “How do I solve 3x + 5 = 20?”</p>
+          <div class="demo-result">
+            <span class="demo-label">Illustrative conversation</span>
+            <p><b>Tutor · L0:</b> What are you trying to find in this equation?</p>
+            <details>
+              <summary>Reveal the next step</summary>
+              <p><b>Student:</b> “x.”</p>
+              <p><b>Tutor · L1:</b> Right, we’re finding x. What could you undo first to leave the term with x by itself?</p>
+            </details>
+            <p><b>Design note:</b> The tutor prompts the student to reason; this is a fixed sample, not a live tutoring session.</p>
+          </div>
+        </div>
+      </details>
+      <details class="demo-card rv" style="--d:7">
+        <summary><span><span class="demo-type">For students · Improve</span>Assignment Advisor</span></summary>
+        <div class="demo-content">
+          <p class="demo-prompt"><b>Draft excerpt:</b> “Pollution is bad for everyone.”</p>
+          <div class="demo-result">
+            <span class="demo-label">Illustrative feedback</span>
+            <p><b>What’s working:</b> “Pollution is bad for everyone” makes your topic clear.</p>
+            <p><b>Next step:</b> What specific effect of pollution will your essay explain?</p>
+            <p><b>Design note:</b> The advisor coaches the student's own writing instead of rewriting it.</p>
+          </div>
+        </div>
+      </details>
     </div>
 
     <div class="sample-grid">
@@ -586,7 +697,7 @@ mark.ev{background:var(--tint);border-bottom:2px solid var(--green);padding:0 2p
         <h3>Assessment Copilot</h3>
         <p>Drafts curriculum-aligned assessments in minutes, complete with answer keys, rubrics and teacher notes.</p>
         <div class="chips"><span class="chip">For teachers</span><span class="chip">MCQ</span><span class="chip">Short Answer</span><span class="chip">Logical Reasoning</span></div>
-        <span class="score-chip"><svg><use href="#i-award"/></svg>Design score 95/100</span>
+        <span class="score-chip"><svg><use href="#i-award"/></svg>Design score 99/100</span>
         <span class="sample-go">Explore sample<svg><use href="#i-arrow-right"/></svg></span>
       </a>
       <a class="sample-card rv" style="--d:4" href="#grading-assistant">
@@ -594,7 +705,7 @@ mark.ev{background:var(--tint);border-bottom:2px solid var(--green);padding:0 2p
         <h3>Grading Assistant</h3>
         <p>Suggests rubric-based marks backed by quotes from the student's answer, plus actionable feedback and a class misconception report.</p>
         <div class="chips"><span class="chip">For teachers</span><span class="chip">Rubric Marking</span><span class="chip">Feedback</span><span class="chip">Class Insights</span></div>
-        <span class="score-chip"><svg><use href="#i-award"/></svg>Design score 96/100</span>
+        <span class="score-chip"><svg><use href="#i-award"/></svg>Design score 98/100</span>
         <span class="sample-go">Explore sample<svg><use href="#i-arrow-right"/></svg></span>
       </a>
       <a class="sample-card rv" style="--d:5" href="#self-study-tutor">
@@ -602,7 +713,7 @@ mark.ev{background:var(--tint);border-bottom:2px solid var(--green);padding:0 2p
         <h3>Self-Study Tutor</h3>
         <p>A Socratic tutor that guides students to the answer with questions and step-by-step hints, without giving it away.</p>
         <div class="chips"><span class="chip">For students</span><span class="chip">Homework Help</span><span class="chip">Revision</span><span class="chip">Exam Prep</span></div>
-        <span class="score-chip"><svg><use href="#i-award"/></svg>Design score 96/100</span>
+        <span class="score-chip"><svg><use href="#i-award"/></svg>Design score 98/100</span>
         <span class="sample-go">Explore sample<svg><use href="#i-arrow-right"/></svg></span>
       </a>
       <a class="sample-card rv" style="--d:6" href="#assignment-advisor">
@@ -1236,7 +1347,7 @@ mark.ev{background:var(--tint);border-bottom:2px solid var(--green);padding:0 2p
           <div class="pr-top"><svg><use href="#i-clock"/></svg><span class="pr-pts">20 PTS</span></div>
           <h4>Zero Context Bloat</h4>
           <p>Lean instructions and short outputs: every word earns its place.</p>
-          <p class="eg"><b>In practice:</b> each agent is under 250 lines and never restates your inputs back to you.</p>
+          <p class="eg"><b>In practice:</b> each agent is at most 250 lines, avoids repeated rules and doesn't restate your inputs.</p>
         </article>
       </div>
     </div>
@@ -1248,13 +1359,13 @@ mark.ev{background:var(--tint);border-bottom:2px solid var(--green);padding:0 2p
         <div class="step rv" style="--d:13"><b>Hard gates</b><span>5 must-pass checks. Failing any one caps the score at 59</span></div>
         <div class="step rv" style="--d:14"><b>20 criteria</b><span>4 per principle, each scored 0–5 against fixed descriptions</span></div>
         <div class="step rv" style="--d:15"><b>Cited evidence</b><span>Every score points to where in the agent the evidence is</span></div>
-        <div class="step rv" style="--d:16"><b>Two reviewers</b><span>Independent scores, with disagreements resolved</span></div>
-        <div class="step teacher rv" style="--d:17"><b>Behaviour tests</b><span>10–15 test cases confirm what the design promises</span></div>
+        <div class="step rv" style="--d:16"><b>Evidence-based review</b><span>Score each criterion and cite evidence from the agent instructions</span></div>
+        <div class="step teacher rv" style="--d:17"><b>Behaviour tests</b><span>5 pass/fail cases per agent; record the pass rate after running them</span></div>
       </div>
       <div class="gate-grid">
         <div class="gate rv" style="--d:18"><svg><use href="#i-check"/></svg><span><b>G1 IDENTITY</b>Clear name and purpose</span></div>
         <div class="gate rv" style="--d:18"><svg><use href="#i-check"/></svg><span><b>G2 NO FABRICATION</b>Nothing permits invented facts or sources</span></div>
-        <div class="gate rv" style="--d:19"><svg><use href="#i-check"/></svg><span><b>G3 DEFINED OUTPUT</b>A template or schema for every output</span></div>
+        <div class="gate rv" style="--d:19"><svg><use href="#i-check"/></svg><span><b>G3 DEFINED OUTPUT</b>At least one output template or schema</span></div>
         <div class="gate rv" style="--d:19"><svg><use href="#i-check"/></svg><span><b>G4 HUMAN CONTROL</b>Teacher approval, integrity and safeguarding</span></div>
         <div class="gate rv" style="--d:20"><svg><use href="#i-check"/></svg><span><b>G5 PRIVACY</b>No unnecessary student data</span></div>
       </div>
@@ -1276,17 +1387,17 @@ mark.ev{background:var(--tint);border-bottom:2px solid var(--green);padding:0 2p
           <table class="crit-table score-table">
             <thead><tr><th>Agent</th><th>Deterministic</th><th>Verification</th><th>Schema</th><th>Reusability</th><th>Context</th><th>Total</th></tr></thead>
             <tbody>
-              <tr><td><a href="#assessment-copilot"><b>Assessment Copilot</b></a></td><td class="n">19</td><td class="n">19</td><td class="n">19</td><td class="n">19</td><td class="n">19</td><td class="tot">95 <span class="mbar"><i style="--w:95%"></i></span></td></tr>
-              <tr><td><a href="#grading-assistant"><b>Grading Assistant</b></a></td><td class="n">19</td><td class="n">20</td><td class="n">20</td><td class="n">19</td><td class="n">18</td><td class="tot">96 <span class="mbar"><i style="--w:96%"></i></span></td></tr>
-              <tr><td><a href="#self-study-tutor"><b>Self-Study Tutor</b></a></td><td class="n">19</td><td class="n">19</td><td class="n">20</td><td class="n">19</td><td class="n">19</td><td class="tot">96 <span class="mbar"><i style="--w:96%"></i></span></td></tr>
-              <tr><td><a href="#assignment-advisor"><b>Assignment Advisor</b></a></td><td class="n">20</td><td class="n">20</td><td class="n">19</td><td class="n">18</td><td class="n">20</td><td class="tot">97 <span class="mbar"><i style="--w:97%"></i></span></td></tr>
+              <tr><td><a href="#assessment-copilot"><b>Assessment Copilot</b></a></td><td class="n">19</td><td class="n">20</td><td class="n">20</td><td class="n">20</td><td class="n">20</td><td class="tot">99 <span class="mbar"><i style="--w:99%"></i></span></td></tr>
+              <tr><td><a href="#grading-assistant"><b>Grading Assistant</b></a></td><td class="n">19</td><td class="n">20</td><td class="n">20</td><td class="n">20</td><td class="n">19</td><td class="tot">98 <span class="mbar"><i style="--w:98%"></i></span></td></tr>
+              <tr><td><a href="#self-study-tutor"><b>Self-Study Tutor</b></a></td><td class="n">20</td><td class="n">19</td><td class="n">20</td><td class="n">19</td><td class="n">20</td><td class="tot">98 <span class="mbar"><i style="--w:98%"></i></span></td></tr>
+              <tr><td><a href="#assignment-advisor"><b>Assignment Advisor</b></a></td><td class="n">19</td><td class="n">19</td><td class="n">20</td><td class="n">20</td><td class="n">19</td><td class="tot">97 <span class="mbar"><i style="--w:97%"></i></span></td></tr>
             </tbody>
           </table>
         </div>
         <details>
           <summary><svg><use href="#i-arrow-right"/></svg>What "provisional" means</summary>
           <div class="key">
-            <p>These scores measure how each agent is <b>designed</b>, based on a criterion-by-criterion review of its instructions. Before a score is final, our rubric requires an independent second reviewer and a behavioural test pass rate of 85% or more. We'll publish both as they're completed.</p>
+            <p>These are <b>design-review scores</b> based on each agent's instructions; they do not measure actual behaviour. Five pass/fail behavior cases are documented per agent; execution and pass rates are not yet recorded.</p>
           </div>
         </details>
       </div>

@@ -1,6 +1,6 @@
 # Agent Design Rubric
 
-This rubric is for scoring every `agents/<name>/agent.md` in this repo before it is merged, and again whenever it changes significantly. It measures how well an agent is **designed** against our five principles:
+Use this rubric to score each `sample agents/<name>/agent.md` before release and whenever it changes significantly. It measures how well an agent is **designed** against our five principles:
 
 | # | Principle | Points |
 |---|---|---|
@@ -11,9 +11,7 @@ This rubric is for scoring every `agents/<name>/agent.md` in this repo before it
 | 5 | Zero Context Bloat | 20 |
 | | **Total** | **100** |
 
-Each principle has **4 criteria**, and each criterion is scored **0–5**. Scores of 0, 3 and 5 have descriptions below. Use 1, 2 or 4 when the agent falls between two descriptions.
-
-> **What this rubric measures:** what the agent is designed to do. It doesn't measure how the agent actually behaves when run. A high score here is a prerequisite for testing, not a replacement for it (see §5).
+Each principle has **4 criteria**, and each criterion is scored **0–5**. Scores of 0, 3 and 5 have descriptions below.
 
 ---
 
@@ -22,18 +20,17 @@ Each principle has **4 criteria**, and each criterion is scored **0–5**. Score
 1. **Check the hard gates first** (§2). If any gate fails, the agent is capped at **59 (Not ready)**, whatever its criterion scores.
 2. **Score each criterion 0–5** against the descriptions in §3. Every score needs **evidence**: a section number or line range in the `agent.md`. A score without a cited location doesn't count.
 3. **Add up the scores.** Each principle's total is the sum of its four criteria (out of 20), and the overall total is the sum of the five principles (out of 100).
-4. **Use two reviewers** for new agents. If they differ by 2 or more points on any criterion, they discuss it and agree a score. Otherwise, use the lower of the two scores.
-5. **Record the result** using the scorecard template (§6) in the PR description.
+4. **Record the result** using the scorecard template (§6) alongside the agent change.
 
 ### Score bands
 
-| Total | Band | Merge decision |
+| Total | Band | Next step |
 |---|---|---|
-| 90–100 | **Exemplary** | Merge |
-| 80–89 | **Strong** | Merge; record the minor fixes as follow-ups |
-| 70–79 | **Adequate** | Fix the lowest-scoring principle before merging |
-| 60–69 | **Weak** | Rework needed |
-| < 60 | **Not ready** | Don't merge |
+| 90–100 | **Exemplary** | Ready to release |
+| 80–89 | **Strong** | Ready to release; note minor follow-ups |
+| 70–79 | **Adequate** | Fix the lowest-scoring principle before release |
+| 60–69 | **Weak** | Rework, then score again |
+| < 60 | **Not ready** | Do not release |
 
 **Floor rule:** if any one principle scores below 10 out of 20, the agent can't be rated higher than **Adequate**, whatever its total.
 
@@ -55,58 +52,58 @@ Each principle has **4 criteria**, and each criterion is scored **0–5**. Score
 
 ### Principle 1: Deterministic Execution (20)
 
-*The same input should produce the same kind of decision and output, every time.*
+*Same input, consistent decisions and output.*
 
 | Criterion | 0 | 3 | 5 |
 |---|---|---|---|
-| **D1 Ordered procedure** | No procedure, or only loose prose | Numbered steps, but the order is ambiguous or some steps are optional without saying when | Numbered steps marked "in order, no skipping". Every branch point says which step comes next |
-| **D2 Decision tables** | Recurring judgments are left to "use your judgment" | Some judgments are encoded as rules; the edge cases aren't covered | Every recurring judgment is a condition → action table, including edge cases (blank, missing, out-of-scope or conflicting input) |
-| **D3 Defaults & tie-breaks** | Optional inputs have no defaults; ordering, rounding and ties are unspecified | Defaults are given for most inputs; some ordering or rounding rules are missing | Every optional input has a default. Rounding, ranking keys, tie-breaks and caps are stated explicitly |
-| **D4 Computation offloaded** | Counting, arithmetic or dates are estimated | The agent is told to "calculate carefully" | Counting, arithmetic and dates use a code tool when one is available, and a stated double-check method (e.g., adding in both directions) when it isn't. "Estimate" or "about" is banned for measured values |
+| **D1 Ordered procedure** | No procedure | Numbered steps, but order or optional steps are unclear | Steps must be followed in order; each branch specifies what comes next |
+| **D2 Decision tables** | Recurring decisions rely on judgment | Some decisions have rules; edge cases are missing | Condition → action rules cover recurring decisions and blank, missing, out-of-scope or conflicting inputs |
+| **D3 Defaults & tie-breaks** | Defaults and decision rules are unspecified | Most defaults are set; some ordering, rounding or tie rules are missing | Defaults, rounding, ranking, tie-breaks and caps are explicit |
+| **D4 Computation offloaded** | Counts, arithmetic or dates are estimated | Told to calculate carefully | Use code when available; otherwise specify a double-check method. Never estimate measured values |
 
 ### Principle 2: Verification & Anti-Hallucination (20)
 
-*Every claim the agent makes can be traced back to a source and checked.*
+*Claims are grounded in sources and can be checked.*
 
 | Criterion | 0 | 3 | 5 |
 |---|---|---|---|
-| **V1 Declared grounding** | No statement of where content may come from | The source is named (e.g., "curriculum"), with no fallback | The permitted sources are listed in priority order, with a defined behaviour for when a source is missing or doesn't cover the request |
-| **V2 Checkable evidence** | Conclusions have no supporting evidence | Evidence is encouraged but optional | Every judgment or claim needs a **verbatim** quote or citation (with length limits) that a reviewer can check. No evidence means no credit or no claim |
-| **V3 Pre-output gates** | No self-check | A general "review your work" instruction | Named checklists (gates) run before output, each item is pass/fail, and failures are fixed or escalated to the user |
-| **V4 Uncertainty & abstention** | The agent is never told it may be unsure | It's told to "flag uncertainty" | Confidence levels or flags with set meanings, scripted fallback wording, a list of things it must never invent (sources, codes, numbers, quotes), and a route for sending unresolved cases to a human |
+| **V1 Declared grounding** | Sources are unspecified | Sources are named, but no fallback is defined | Permitted sources are prioritized; missing or insufficient sources have a defined fallback |
+| **V2 Checkable evidence** | Claims lack evidence | Evidence is optional | Each claim or judgment requires checkable, length-limited verbatim evidence or citation; without evidence, abstain or award no credit |
+| **V3 Pre-output gates** | No self-check | General review instruction | Named pass/fail checks run before output; failures are fixed or escalated |
+| **V4 Uncertainty & abstention** | No allowance for uncertainty | Told to flag uncertainty | Define confidence flags, fallback wording, forbidden inventions (e.g., sources, codes, numbers, quotes) and human escalation |
 
 ### Principle 3: Output Schema Quality (20)
 
-*Outputs are predictable, easy to parse, and fit the people and systems that use them.*
+*Outputs are consistent, parseable and suited to their users and systems.*
 
 | Criterion | 0 | 3 | 5 |
 |---|---|---|---|
-| **O1 Human format** | Free-form output | A suggested structure | An exact template with fixed sections, section order and length limits (adjusted by grade or audience where relevant) |
-| **O2 Machine schema** | None | JSON shown as an example only | A JSON schema with required fields, types, lists of allowed values, and a `schema_version` |
-| **O3 Schema rules** | None | Some field notes | Explicit rules covering empty values versus `null`, how derived fields are calculated, when a field is left out, and word limits for each field |
-| **O4 Consumer fit** | One output for everyone | Teacher and student outputs are separated | Outputs are separated by audience, there are exports for the systems that consume them (CSV, LMS), and status or approval fields track the workflow |
+| **O1 Human format** | Free-form | Suggested structure | Exact sections, order and length limits, adapted to audience or grade as needed |
+| **O2 Machine schema** | No schema | JSON example only | Versioned JSON schema defines required fields, types and allowed values |
+| **O3 Schema rules** | No field rules | Some field notes | Define empty vs. `null`, derived fields, omission conditions and field length limits |
+| **O4 Consumer fit** | Same output for everyone | Teacher and student outputs differ | Audience-specific outputs, needed exports (e.g., CSV/LMS) and workflow status or approval fields |
 
 ### Principle 4: Reusability & Real Utility (20)
 
-*The agent works across classrooms and saves real time in real workflows.*
+*Works across classrooms and supports useful workflows.*
 
 | Criterion | 0 | 3 | 5 |
 |---|---|---|---|
-| **R1 Input contract** | Inputs are implied | Inputs are listed | A table marks each input as required or optional, with defaults, and an "ask once, in one message, only for what's missing" rule |
-| **R2 Domain-agnostic** | Hardcoded to one subject, grade or board | Adapts with some effort | Parameterised by subject, grade, curriculum and language. Examples are clearly marked as illustrations |
-| **R3 Workflow coverage** | Only the single happy path | A few follow-up requests are handled | A request → action table covers common follow-ups, revisions, edge cases and handoffs to other agents |
-| **R4 Interoperability** | Standalone | Mentions related agents | Consumes or produces formats that other agents in this repo use (e.g., Assessment Copilot rubrics feeding into Grading Assistant) |
+| **R1 Input contract** | Inputs are implied | Inputs are listed | Mark inputs required or optional, set defaults, and ask once only for missing information |
+| **R2 Domain-agnostic** | Fixed to one subject, grade or board | Some adaptation is possible | Parameters cover subject, grade, curriculum and language; examples are labeled illustrative |
+| **R3 Workflow coverage** | Happy path only | Some follow-ups are handled | Request → action rules cover follow-ups, revisions, edge cases and handoffs |
+| **R4 Interoperability** | Standalone | Related agents are mentioned | Uses or produces formats shared with repo agents (e.g., rubrics passed to Grading Assistant) |
 
 ### Principle 5: Zero Context Bloat (20)
 
-*Every token earns its place, in the prompt and in the outputs.*
+*Keep prompts and outputs concise without losing useful detail.*
 
 | Criterion | 0 | 3 | 5 |
 |---|---|---|---|
-| **Z1 Lean prompt** | More than 400 lines, or heavy repetition or filler | 250–400 lines, with some duplication | 250 lines or fewer. Every section can be acted on, and nothing is said twice (a rule stated once is referenced afterwards, not restated) |
-| **Z2 Minimal state** | Silent on what to remember | Partly specified | Lists exactly what to keep between turns or items, and what to discard |
-| **Z3 Terse outputs** | Restates the inputs and echoes whole documents back | Some limits | Doesn't restate inputs. Quotes have length limits. Large inputs get a summary first, with detail on request |
-| **Z4 Efficient interaction** | Asks one question at a time, or asks about things that have defaults | Mostly batched | One batched clarification message at most. No questions about things with defaults. No meta-commentary unless asked |
+| **Z1 Lean prompt** | Over 400 lines, or heavy repetition/filler | 250–400 lines with some duplication | At most 250 actionable lines; state each rule once and refer back to it |
+| **Z2 Minimal state** | Memory needs are unspecified | Partly specified | State exactly what to keep between turns or items and what to discard |
+| **Z3 Terse outputs** | Repeats inputs or whole documents | Some output limits | Don't repeat inputs; cap quotes; summarize large inputs and provide detail on request |
+| **Z4 Efficient interaction** | Repeated or one-at-a-time clarification questions, including about defaults | Mostly batched, with avoidable follow-ups | At most one batched clarification; don't ask about defaults or add unrequested meta-commentary. Socratic teaching questions are not clarifications |
 
 ---
 
@@ -126,7 +123,7 @@ Apply these after scoring each criterion. A criterion can't go below 0.
 
 ## 5. Measuring Actual Behaviour (strongly recommended)
 
-A design score is what the agent is meant to do. Behavioural tests show what it actually does. For each agent, keep **10–15 test cases** (an input plus pass/fail checks) that cover:
+A design score is what the agent is meant to do. Behavioural tests show what it actually does. For each agent, keep **5 test cases** (an input plus pass/fail checks) that cover:
 
 - the normal case, one or more edge cases (blank, missing or out-of-scope input), and one or more adversarial cases (e.g., "just give me the answer", "write it for me")
 - one or more checks for every hard rule in the agent, for example: "no mark of 1 or more without a quote", "no final answer while at hint level L2", "no named source that wasn't provided"
@@ -137,10 +134,10 @@ Report the result as `pass rate %` next to the design score. Treat an agent with
 
 ## 6. Scorecard Template
 
-Copy this into the PR description:
+Use this template to record your review with the agent change:
 
 ```markdown
-### Agent Rubric: <agent-name> (agents/<name>/agent.md @ <commit>)
+### Agent Rubric: <agent-name> (sample agents/<name>/agent.md @ <commit>)
 
 **Hard gates:** G1 ☐ G2 ☐ G3 ☐ G4 ☐ G5 ☐
 
@@ -155,20 +152,4 @@ Copy this into the PR description:
 **Deductions:** <finding → criterion → −n>
 **Total:** __ / 100 · **Band:** ____ · **Behavioural pass rate:** __% (n cases)
 **Top 3 fixes:** 1. … 2. … 3. …
-**Reviewers:** @… @…
 ```
-
----
-
-## 7. Author Checklist (before requesting a review)
-
-- [ ] The header block has a `name` matching the folder and a `description` with a "Use when…" trigger
-- [ ] Hard rules come first, are numbered, and have no exceptions
-- [ ] An input contract table includes defaults
-- [ ] There's a numbered procedure, and decision tables for recurring judgments
-- [ ] Counting and arithmetic go to a code tool or a double-check method
-- [ ] Claims require verbatim evidence, and gates run before output
-- [ ] There's a human template and a JSON schema with allowed values and rules for empty fields
-- [ ] There's a request → action table for common follow-ups
-- [ ] The file is 250 lines or fewer, with no repeated rules, and says what state to keep
-- [ ] The examples follow the agent's own rules (check the numbers, limits and dates)

@@ -10,10 +10,10 @@ Cognitive Cortex is an AI transformation partner for schools. This repo contains
 
 | Agent | For | What it does | Design score |
 |---|---|---|---|
-| [**Assessment Copilot**](agents/assessment-copilot/agent.md) | Teachers | Drafts curriculum-grounded MCQ, short-answer and logical-reasoning questions, with a verified answer key and rubric | **95** |
-| [**Grading Assistant**](agents/grading-assistant/agent.md) | Teachers | Suggests rubric marks, each backed by a quote from the student's answer, plus feedback and a class misconception report. The teacher approves every mark | **96** |
-| [**Self-Study Tutor**](agents/self-study-tutor/agent.md) | Students | A Socratic tutor that guides students with escalating hints, without giving away answers, and writes a session summary for the teacher | **96** |
-| [**Assignment Advisor**](agents/assignment-advisor/agent.md) | Students | Coaches essays and projects from first idea to final check, against the teacher's rubric. It never ghostwrites | **97** |
+| [**Assessment Copilot**](sample%20agents/assessment-copilot/agent.md) | Teachers | Drafts curriculum-grounded MCQ, short-answer and logical-reasoning questions, with a verified answer key and rubric | **99** |
+| [**Grading Assistant**](sample%20agents/grading-assistant/agent.md) | Teachers | Suggests rubric marks, each backed by a quote from the student's answer, plus feedback and a class misconception report. The teacher approves every mark | **98** |
+| [**Self-Study Tutor**](sample%20agents/self-study-tutor/agent.md) | Students | A Socratic tutor that guides students with escalating hints, without giving away answers, and writes a session summary for the teacher | **98** |
+| [**Assignment Advisor**](sample%20agents/assignment-advisor/agent.md) | Students | Coaches essays and projects from first idea to final check, against the teacher's rubric. It never ghostwrites | **97** |
 
 ---
 
@@ -27,26 +27,26 @@ Generic AI tools are unpredictable, invent facts, return free-form text and pad 
 | 2 | **Verification & Anti-Hallucination** | Every claim can be traced back to a source and checked | "Evidence or zero" marking, verbatim quotes, blind solving of the answer key, pre-output gates, and lists of things the agent must never invent |
 | 3 | **Output Schema Quality** | Outputs are predictable, easy to parse, and fit their audience | Fixed templates, versioned JSON schemas with fixed allowed values, separate student and teacher views, and LMS/CSV exports |
 | 4 | **Reusability & Real Utility** | It works across classrooms and saves real time | Input contracts with defaults, curriculum-agnostic parameters, follow-up request tables, and agents that feed each other |
-| 5 | **Zero Context Bloat** | Every token earns its place | Prompts of 250 lines or fewer, explicit state to keep and discard, capped quotes, and one batched question at most |
+| 5 | **Zero Context Bloat** | Every token earns its place | Prompts of 250 lines or fewer, explicit state to keep and discard, capped quotes, and at most one batched clarification when needed |
 
-The full rubric, scorecard template and author checklist are in [RUBRIC.md](RUBRIC.md).
+The full rubric and scorecard template are in [RUBRIC.md](RUBRIC.md).
 
 ---
 
 ## Agent Scores
 
-| Agent | Design score |
-|---|---:|
-| [Assessment Copilot](agents/assessment-copilot/agent.md) | 95/100 |
-| [Grading Assistant](agents/grading-assistant/agent.md) | 96/100 |
-| [Self-Study Tutor](agents/self-study-tutor/agent.md) | 96/100 |
-| [Assignment Advisor](agents/assignment-advisor/agent.md) | 97/100 |
+| Agent | Design score | Behavior test cases (not run) |
+|---|---:|---:|
+| [Assessment Copilot](sample%20agents/assessment-copilot/agent.md) | 99/100 | [5](sample%20agents/assessment-copilot/behavior-tests.md) |
+| [Grading Assistant](sample%20agents/grading-assistant/agent.md) | 98/100 | [5](sample%20agents/grading-assistant/behavior-tests.md) |
+| [Self-Study Tutor](sample%20agents/self-study-tutor/agent.md) | 98/100 | [5](sample%20agents/self-study-tutor/behavior-tests.md) |
+| [Assignment Advisor](sample%20agents/assignment-advisor/agent.md) | 97/100 | [5](sample%20agents/assignment-advisor/behavior-tests.md) |
 
 ---
 
 ## Using an Agent
 
-Choose an agent from the table above and use its `agent.md` file as the instructions for your AI assistant. Include relevant curriculum material in the conversation or the platform's knowledge/files area for the best grounding.
+Choose an agent from the table above and use its `agent.md` file as the instructions for your AI assistant. Include relevant curriculum material in the conversation or the platform's knowledge/files area for the best grounding. Scores are design-review results; they do not certify behavioural test performance.
 
 - **Gemini:** Create a Gem, then paste the contents of the chosen `agent.md` into its instructions. Add curriculum materials as knowledge files or provide them in the chat.
 - **Claude:** Create a Project and paste the contents of the chosen `agent.md` into the project instructions. Add curriculum materials to the project or provide them in the chat. In Claude Code, copy the file to `.claude/agents/<name>.md` in your project (or `~/.claude/agents/`) to use it as a subagent.
